@@ -40,5 +40,5 @@ end
 Capybara.asset_host = 'http://localhost:3000'
 ## host directory for screenshot files
 Capybara.save_path = "tmp/capybara"
-# Keep only the screenshots generated from the last failing test suite
+## Keep only the screenshots generated from the last failing test suite
 Capybara::Screenshot.prune_strategy = :keep_last_run
