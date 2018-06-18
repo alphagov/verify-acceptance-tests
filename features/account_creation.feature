@@ -29,7 +29,7 @@ Feature: User account creation
     Given the user is at Test RP
     And we do not want to match the user
     And they start a sign in journey
-    And they select IDP "Stub Idp Demo"
+    And they select "Stub Idp Demo"
     And they login as "stub-idp-demo"
     And they submit cycle 3 "AA123456A"
     Then a user should have been created with details:
@@ -66,7 +66,7 @@ Feature: User account creation
     And we set the RP name to "test-rp-noc3"
     And we do not want to match the user
     And they start a sign in journey
-    And they select IDP "Stub Idp Demo"
+    And they select "Stub Idp Demo"
     And they login as "stub-idp-demo"
     Then a user should have been created with details:
       | firstname   | Jack       |
@@ -81,6 +81,6 @@ Feature: User account creation
     And we do not want to match the user
     And we want to fail account creation
     And they start a sign in journey
-    And they select IDP "Stub Idp Demo"
+    And they select "Stub Idp Demo"
     And they login as "stub-idp-demo" with a random pid
     Then user account creation should fail
