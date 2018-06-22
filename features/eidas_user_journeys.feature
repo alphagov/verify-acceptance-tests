@@ -6,7 +6,8 @@ Feature: eIDAS user journeys
     Given the user is at Test RP
     And they start an eIDAS journey
     And they select eIDAS scheme "Stub IDP Demo"
-    And they go back to the country picker
+    Then they should be at IDP "Stub Country"
+    Given they go back to the country picker
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
 
