@@ -4,6 +4,7 @@ local:
   idps:
     Stub Country: http://localhost:50140/eidas/stub-country/login
     Stub Idp Demo: http://localhost:50140/stub-idp-demo/login
+    Stub Idp Two: http://localhost:50140/stub-idp-two/login
     Post Office Stub: http://localhost:50140/post-office-test-rp/login
 
 docker-local:
