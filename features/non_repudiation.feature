@@ -21,8 +21,8 @@ Feature: User registers, returns to confirm identity and signs in successfully
     Then our Consent page should show "Level of assurance" = "LEVEL_2"
     When they give their consent
     Then they should be successfully verified
-    When they click "Confirm Identity"
+    When they click button "Confirm Identity"
     Then they arrive at the confirm identity page for "Experian"
-    When they click "Sign in with Experian"
+    When they click button "Sign in with Experian"
     And they login as the newly registered user
     Then they should be successfully verified

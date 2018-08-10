@@ -303,7 +303,14 @@ Then('a user should have been created with details:') do |details|
   end
 end
 
-Then('user account creation should fail') do
+Then('they should arrive at the Test RP start page with error notice') do
+  page = env('test-rp')
+  assert_current_path(page, ignore_query: true)
+  assert_text('Register for an identity profile')
+  assert_text('There has been a problem signing you in.')
+end
+
+Then('should arrive at the user account creation error page') do
   assert_text('Sorry, there is a problem with the service')
 end
 
@@ -324,7 +331,7 @@ Then('they arrive at the confirm identity page for {string}') do |idp|
   assert_text('Sign in with '+idp)
 end
 
-Then('they arrive at the prove identity page') do
+Then('they should arrive at the prove identity page') do
   assert_text('Prove your identity to continue')
   assert_text('Choose how you want to prove your identity so you can register for an identity profile.')
 end
@@ -385,10 +392,14 @@ And('they go back to the start page') do
   visit(URI.join(env('frontend'), 'start'))
 end
 
-When('they click {string}') do |value|
+When('they click button {string}') do |value|
   if value == ('Sign in with '+@idp)
     page.find(:xpath, "//button[contains(text(), '#{value}')]").click
   else
     page.find(:xpath, "//input[@value= '#{value}']").click
   end
+end
+
+When('they click on link {string}') do |value|
+  click_on(value)
 end
