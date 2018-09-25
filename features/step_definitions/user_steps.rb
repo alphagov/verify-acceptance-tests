@@ -204,6 +204,10 @@ Given('they continue to register with IDP {string}') do |idp|
   @idp = "#{idp}"
 end
 
+Then('they cannot continue to register with disconnected IDP {string}') do |idp|
+  assert_no_text("Choose #{idp}")
+end
+
 Given('they register for an LOA1 profile with IDP {string}') do |idp|
   click_on("Choose #{idp}")
   assert_text('Create your ' + idp + ' identity account')
