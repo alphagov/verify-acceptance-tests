@@ -440,3 +440,27 @@ Given('they login as {string} with {string} signing algorithm') do |username, al
   page.execute_script("document.getElementById('signingAlgorithm').value = '#{algorithm}';")
   click_on('I Agree')
 end
+
+Given('the user is at Stub IDP Demo One') do
+  visit(env('Single Idp Start'))
+end
+
+And('they select a service from the list') do
+  click_on('register for an identity profile')
+end
+
+And('they are sent to Test Rp') do
+  assert_current_path('/test-rp')
+end
+
+And('they land on the continue to idp page') do
+  assert_current_path('/continue-to-your-idp')
+end
+
+Given('they continue to the idp') do
+  click_on('continue-to-idp-button')
+end
+
+Then('they are on Stub IDP Demo One log in') do
+  assert_current_path('/stub-idp-demo-one/login')
+end
