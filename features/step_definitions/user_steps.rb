@@ -295,8 +295,9 @@ Given('they enter eidas user details:') do |details|
 end
 
 Then('they should be at IDP {string}') do |idp|
-  page = env('idps').fetch(idp)
-  assert_current_path(page, url: true)
+  idp_url = env('idps').fetch(idp)
+  page = URI.join(idp_url, 'login')
+  assert_current_path(page.to_s, url: true)
 end
 
 Then('they should be successfully verified') do
@@ -305,7 +306,7 @@ Then('they should be successfully verified') do
 end
 
 Then('they should arrive at the {string} Cancel Registration page') do |idp|
-    assert_text("Your identity verification with #{idp} has been cancelled")
+  assert_text("Your identity verification with #{idp} has been cancelled")
 end
 
 Then('they should be successfully verified with level of assurance {string}') do |assurance_level|
@@ -441,26 +442,24 @@ Given('they login as {string} with {string} signing algorithm') do |username, al
   click_on('I Agree')
 end
 
-Given('the user is at Stub IDP Demo One') do
-  visit(env('Single Idp Start'))
+Given('the user is at the {string} prompt page') do |idp|
+  idp_url = env('idps').fetch(idp)
+  prompt_page = URI.join(idp_url, 'start-prompt')
+  visit(prompt_page)
 end
 
-And('they select a service from the list') do
-  click_on('register for an identity profile')
+Given('they select a service from the list') do
+  click_on('test GOV.UK Verify user journeys')
 end
 
-And('they are sent to Test Rp') do
+Then('they are sent to Test Rp') do
   assert_current_path('/test-rp')
 end
 
-And('they land on the continue to idp page') do
+Then('they land on the continue to idp page') do
   assert_current_path('/continue-to-your-idp')
 end
 
 Given('they continue to the idp') do
   click_on('continue-to-idp-button')
-end
-
-Then('they are on Stub IDP Demo One log in') do
-  assert_current_path('/stub-idp-demo-one/login')
 end
