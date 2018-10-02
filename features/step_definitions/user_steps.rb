@@ -321,7 +321,7 @@ end
 Then('they should arrive at the Test RP start page with error notice') do
   page = env('test-rp')
   assert_current_path(page, ignore_query: true)
-  assert_text('Register for an identity profile')
+  assert_text('Test GOV.UK Verify user journeys')
   assert_text('There has been a problem signing you in.')
 end
 
@@ -350,7 +350,7 @@ end
 
 Then('they should arrive at the prove identity page') do
   assert_text('Prove your identity to continue')
-  assert_text('Choose how you want to prove your identity so you can register for an identity profile.')
+  assert_text('Choose how you want to prove your identity so you can test GOV.UK Verify user journeys.')
   assert_current_path('/prove-identity')
 end
 
