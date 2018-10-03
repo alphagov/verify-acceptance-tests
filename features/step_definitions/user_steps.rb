@@ -141,6 +141,11 @@ Given('they go back to the country picker') do
   assert_text('Use a digital identity from another European country')
 end
 
+Given('they go back to the journey picker page') do
+  visit(URI.join(env('frontend'), 'prove-identity'))
+  assert_text('Prove your identity to continue')
+end
+
 Given('they login as {string}') do |username|
   fill_in('username', with: username)
   fill_in('password', with: 'bar')
