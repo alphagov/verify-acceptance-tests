@@ -2,30 +2,30 @@ local:
   frontend: http://localhost:50300
   test-rp: http://localhost:50130/test-rp
   idps:
-    Stub Country: http://localhost:50140/eidas/stub-country/
-    Stub Idp Demo One: http://localhost:50140/stub-idp-demo-one/
-    Stub Idp Demo Two: http://localhost:50140/stub-idp-demo-two/
+    Stub Country: http://localhost:50140/eidas/stub-country/login
+    Stub Idp Demo One: http://localhost:50140/stub-idp-demo-one/login
+    Stub Idp Demo Two: http://localhost:50140/stub-idp-demo-two/login
 
 docker-local:
   frontend: http://frontend
   test-rp: http://test-rp/test-rp
   idps:
-    Stub Country: http://stub-idp/eidas/stub-country/
-    Stub Idp Demo One: http://stub-idp/stub-idp-demo-one/
-    Stub Idp Demo Two: http://stub-idp/stub-idp-demo-two/
+    Stub Country: http://stub-idp/eidas/stub-country/login
+    Stub Idp Demo One: http://stub-idp/stub-idp-demo-one/login
+    Stub Idp Demo Two: http://stub-idp/stub-idp-demo-two/login
 
 joint:
   frontend: https://www.joint.signin.service.gov.uk
   test-rp: https://test-rp-stub-joint.ida.digital.cabinet-office.gov.uk/test-rp
   idps:
-    Stub Country: https://ida-stub-idp-joint.cloudapps.digital/eidas/stub-country/
-    Stub Idp Demo One: https://ida-stub-idp-joint.cloudapps.digital/stub-idp-demo-one/
-    Stub Idp Demo Two: https://ida-stub-idp-joint.cloudapps.digital/stub-idp-demo-two/
+    Stub Country: https://ida-stub-idp-joint.cloudapps.digital/eidas/stub-country/login
+    Stub Idp Demo One: https://ida-stub-idp-joint.cloudapps.digital/stub-idp-demo-one/login
+    Stub Idp Demo Two: https://ida-stub-idp-joint.cloudapps.digital/stub-idp-demo-two/login
 
 staging:
   frontend: https://www.staging.signin.service.gov.uk
   test-rp: https://test-rp-stub-staging.ida.digital.cabinet-office.gov.uk/test-rp
   idps:
-    Stub Country: https://ida-stub-idp-staging.cloudapps.digital/eidas/stub-country/
-    Stub Idp Demo One: https://ida-stub-idp-staging.cloudapps.digital/stub-idp-demo-one/
-    Stub Idp Demo Two: https://ida-stub-idp-staging.cloudapps.digital/stub-idp-demo-two/
+    Stub Country: https://ida-stub-idp-staging.cloudapps.digital/eidas/stub-country/login
+    Stub Idp Demo One: https://ida-stub-idp-staging.cloudapps.digital/stub-idp-demo-one/login
+    Stub Idp Demo Two: https://ida-stub-idp-staging.cloudapps.digital/stub-idp-demo-two/login
