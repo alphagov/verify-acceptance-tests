@@ -219,6 +219,10 @@ Given('they select IDP {string}') do |idp|
   click_on("Select #{idp}", match: :prefer_exact)
 end
 
+Then('they cannot sign in with IDP {string}') do |idp|
+  assert_no_text("Select #{idp}")
+end
+
 Given('the IDP returns an Authn Failure response') do
   click_on('tab-login')
   click_on('Authn Failure')
