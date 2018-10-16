@@ -29,6 +29,7 @@ Feature: User simple flows - sign in and registeration
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click continue on the confirmation page
     Then they should be successfully verified
 
   Scenario: User cannot register with a disconnected IDP

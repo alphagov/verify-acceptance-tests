@@ -20,6 +20,7 @@ Feature: User registers, returns to confirm identity and signs in successfully
           | dateOfBirth     | 1987-03-03 |
     Then our Consent page should show "Level of assurance" = "LEVEL_2"
     When they give their consent
+    And they click continue on the confirmation page
     Then they should be successfully verified
     When they click button "Confirm Identity"
     Then they arrive at the confirm identity page for "Stub Idp Demo Two"
