@@ -309,7 +309,7 @@ Then('they should be successfully verified') do
 end
 
 Then('they should arrive at the {string} Cancel Registration page') do |idp|
-    assert_text("Your identity verification with #{idp} has been cancelled")
+  assert_text("You cancelled your identity verification with #{idp}")
 end
 
 Then('they should be successfully verified with level of assurance {string}') do |assurance_level|
