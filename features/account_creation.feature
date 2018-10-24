@@ -20,6 +20,7 @@ Feature: User account creation
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click continue on the confirmation page
     And they submit cycle 3 "AA123456A"
     Then a user should have been created with details:
       | firstname      | Jane           |
@@ -59,6 +60,7 @@ Feature: User account creation
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click continue on the confirmation page
     Then a user should have been created with details:
       | firstname      | Jane           |
       | surname        | Doe            |
@@ -97,6 +99,7 @@ Feature: User account creation
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click continue on the confirmation page
     Then a user should have been created with details:
       | firstname      | Jane           |
       | surname        | Doe            |

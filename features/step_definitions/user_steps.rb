@@ -284,6 +284,9 @@ end
 
 Given('they give their consent') do
   click_on('I Agree')
+end
+
+Given('they click continue on the confirmation page') do
   click_on('Continue')
 end
 
@@ -443,4 +446,69 @@ Given('they login as {string} with {string} signing algorithm') do |username, al
   assert_text("You've successfully authenticated")
   page.execute_script("document.getElementById('signingAlgorithm').value = '#{algorithm}';")
   click_on('I Agree')
+end
+
+When('they choose to pause their journey') do
+  click_on('Login')
+  click_on('Save and Continue Later')
+end
+
+When('they continue verifying with {string}') do |idp|
+  click_on("Continue verifying with #{idp}")
+end
+
+Given('they resume registering with IDP {string}') do |idp|
+  click_on("Continue with #{idp}")
+end
+
+Then('they will be at the stateful paused page for {string}') do |idp|
+  assert_current_path('/paused')
+  assert_text("Your #{idp} identity account has been saved")
+  page.assert_selector('a', id: 'next-button', text: "Continue verifying with #{idp}", visible: true)
+end
+
+Then('they will be at the stateless paused page') do
+  assert_current_path('/paused')
+  assert_text("The certified company has saved your information")
+  page.assert_selector('a', text: "test GOV.UK Verify user journeys", visible: true)
+end
+
+Then('they will be at the resume page for {string}') do |idp|
+  assert_current_path('/resume-registration')
+  assert_text("Continue verifying with #{idp}")
+  page.assert_selector('button', id: 'continue-to-idp-button', text: "Continue with #{idp}", visible: true)
+end
+
+Given('they start a registration journey with IDP {string}') do |idp|
+  step('they start a journey')
+  step('this is their first time using Verify')
+  step('they are above the age threshold')
+  step('they do not have their documents')
+  step('they do not have other identity documents')
+  step('they have a smart phone')
+  step("they continue to register with IDP '#{idp}'")
+end
+
+Given('they are on a different device') do
+  Capybara.reset_sessions!
+end
+
+When ('they visit the paused page') do
+  visit(env('frontend')+"/paused")
+end
+
+Then('they will be at the Test RP start page') do
+  assert_current_path(env('test-rp'))
+end
+
+When ('frontend session times out') do
+  step('clear "_verify-frontend_session" cookie')
+end
+
+When ('clear {string} cookie') do|cookie_name|
+  page.driver.browser.manage.delete_cookie(name: cookie_name)
+end
+
+When('they click a resume link in an e-mail from IDP with link for simpleId {string}') do |idp_simple_id|
+  visit(env('frontend') + "/paused/#{idp_simple_id}")
 end
