@@ -16,6 +16,23 @@ Feature: User Back button
 
 
   @Eidas
+  Scenario: User selects a Verify IDP and then goes back to select a country
+    Given the user is at Test RP
+    When they start a sign in journey
+    And they select IDP "Stub Idp Demo One"
+    Then they should be at IDP "Stub Idp Demo One"
+
+    When they go back to the journey picker page
+    And they choose to use a European identity scheme
+    Then they should arrive at the country picker
+
+    And they select eIDAS scheme "Stub IDP Demo"
+    Then they should be at IDP "Stub Country"
+    And they login as "stub-country"
+    Then they should be successfully verified
+
+
+  @Eidas
   Scenario: User selects a country and then goes back to select a Verify IDP
     Given the user is at Test RP
     When they start an eIDAS journey
