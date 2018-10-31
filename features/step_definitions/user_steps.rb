@@ -307,8 +307,9 @@ Given('they enter eidas user details:') do |details|
 end
 
 Then('they should be at IDP {string}') do |idp|
-  page = env('idps').fetch(idp)
-  assert_current_path(page, url: true)
+  idp_url = env('idps').fetch(idp)
+  page = URI.join(idp_url, 'login')
+  assert_current_path(page.to_s, url: true)
 end
 
 Then('they should be successfully verified') do
@@ -516,4 +517,28 @@ end
 
 When('they click a resume link in an e-mail from IDP with link for simpleId {string}') do |idp_simple_id|
   visit(env('frontend') + "/paused/#{idp_simple_id}")
+end
+
+Given('the user is at the {string} prompt page') do |idp|
+  idp_url = env('idps').fetch(idp)
+  prompt_page = URI.join(idp_url, 'start-prompt')
+  visit(prompt_page)
+end
+
+Given('they initiate single IDP journey with serviceID {string} and IDP ID {string}') do |serviceId, idpEntityId|
+  fill_in('serviceId', with: serviceId)
+  fill_in('idpEntityId', with: idpEntityId)
+  click_on('Initiate Single IDP journey')
+end
+
+Then('they are sent to Test Rp') do
+  assert_current_path('/test-rp')
+end
+
+Then('they land on the continue to idp page') do
+  assert_current_path('/continue-to-your-idp')
+end
+
+Given('they continue to the idp') do
+  click_on('continue-to-idp-button')
 end
