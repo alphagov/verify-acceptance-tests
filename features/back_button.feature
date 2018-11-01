@@ -8,7 +8,7 @@ Feature: User Back button
     And they select IDP "Stub Idp Demo Two"
     Then they should be at IDP "Stub Idp Demo Two"
 
-    When they choose to go back to the "sign-in" page
+    When they go back to the "IDP sign-in" page
     And they select IDP "Stub Idp Demo One"
     Then they should be at IDP "Stub Idp Demo One"
     And they login as "stub-idp-demo-one"
@@ -22,9 +22,9 @@ Feature: User Back button
     And they select IDP "Stub Idp Demo One"
     Then they should be at IDP "Stub Idp Demo One"
 
-    When they go back to the journey picker page
+    When they go back to the "prove identity" page
     And they choose to use a European identity scheme
-    Then they should arrive at the country picker
+    Then they should arrive at the country picker page
 
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
@@ -36,11 +36,11 @@ Feature: User Back button
   Scenario: User selects a country and then goes back to select a Verify IDP
     Given the user is at Test RP
     When they start an eIDAS journey
-    Then they should arrive at the country picker
+    Then they should arrive at the country picker page
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
 
-    When they go back to the journey picker page
+    When they go back to the "prove identity" page
     And they choose to use Verify
     Then they should arrive at the Start page
     And they select sign in option
@@ -57,10 +57,10 @@ Feature: User Back button
     And they select IDP "Stub Idp Demo Two"
     Then they should be at IDP "Stub Idp Demo Two"
 
-    When they choose to go back to the "sign-in" page
+    When they go back to the "IDP sign-in" page
     Then they should arrive at the Sign in page
 
-    When they choose to go back to the "start" page
+    When they go back to the "verify start" page
     Then they should arrive at the Start page
 
     When they choose a registration journey

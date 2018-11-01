@@ -44,7 +44,7 @@ Feature: User authentication failure
     When they click on link "Other ways to prove your identity online"
     Then they should arrive at the prove identity page
     And they choose to use a European identity scheme
-    Then they should arrive at the country picker
+    Then they should arrive at the country picker page
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
     And they login as "stub-country"
