@@ -542,3 +542,7 @@ end
 Given('they continue to the idp') do
   click_on('continue-to-idp-button')
 end
+
+Given('the IDP fails to authenticate user') do
+  click_on('Authn Failure')
+end
