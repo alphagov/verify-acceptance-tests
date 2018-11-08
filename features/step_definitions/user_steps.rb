@@ -15,7 +15,7 @@ end
 
 def page_mapping(page_name)
   case page_name
-  when 'verify start' then
+  when 'Verify start' then
     'start'
   when 'IDP sign-in' then
     'sign-in'
