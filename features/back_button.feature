@@ -80,7 +80,7 @@ Feature: User Back button
     Then they should be at IDP "Stub Country"
     Given the IDP fails to authenticate user
     Then they should arrive at the Failed country sign in page
-    Given they go back to the country picker
+    Given they go back to the "country picker" page
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
     And they login as "stub-country-ec3"

@@ -259,7 +259,7 @@ Given('they choose to start again with another IDP') do
 end
 
 Given('they go back to the {string} page') do |page_name|
-  page_mapped_url = page_mapping(page_name)
+  page_mapped_url = page_name_to_url_mapping(page_name)
   visit(URI.join(env('frontend'), page_mapped_url))
 
   page_text = page_heading_text(page_mapped_url)
