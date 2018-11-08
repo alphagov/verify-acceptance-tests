@@ -60,7 +60,7 @@ Feature: User Back button
     When they go back to the "IDP sign-in" page
     Then they should arrive at the Sign in page
 
-    When they go back to the "verify start" page
+    When they go back to the "Verify start" page
     Then they should arrive at the Start page
 
     When they choose a registration journey
