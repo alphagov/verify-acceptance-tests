@@ -13,7 +13,7 @@ def see_journey_picker?
   @see_journey_picker
 end
 
-def page_mapping(page_name)
+def page_name_to_url_mapping(page_name)
   case page_name
   when 'Verify start' then
     'start'
