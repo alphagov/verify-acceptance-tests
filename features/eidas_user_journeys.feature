@@ -8,7 +8,7 @@ Feature: eIDAS user journeys
     And they start an eIDAS journey
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
-    Given they go back to the country picker
+    Given they go back to the "country picker" page
     And they select eIDAS scheme "Stub IDP Demo"
     Then they should be at IDP "Stub Country"
 

@@ -13,14 +13,29 @@ def see_journey_picker?
   @see_journey_picker
 end
 
+def page_name_to_url_mapping(page_name)
+  case page_name
+  when 'Verify start' then
+    'start'
+  when 'IDP sign-in' then
+    'sign-in'
+  when 'country picker'
+    'choose-a-country'
+  when 'prove identity'
+    'prove-identity'
+  end
+end
+
 def page_heading_text(page)
   case page
-  when 'select-documents' then
-    'Your photo identity document'
   when 'start' then
     'Sign in with GOV.UK Verify'
-  when 'start' then
+  when 'sign-in' then
     'Who do you have an identity account with?'
+  when 'choose-a-country'
+    'Use a digital identity from another European country'
+  when 'prove-identity'
+    'Prove your identity to continue'
   end
 end
 
@@ -136,16 +151,6 @@ Given('they click Register') do
   click_on('Register')
 end
 
-Given('they go back to the country picker') do
-  visit(URI.join(env('frontend'), 'choose-a-country'))
-  assert_text('Use a digital identity from another European country')
-end
-
-Given('they go back to the journey picker page') do
-  visit(URI.join(env('frontend'), 'prove-identity'))
-  assert_text('Prove your identity to continue')
-end
-
 Given('they login as {string}') do |username|
   fill_in('username', with: username)
   fill_in('password', with: 'bar')
@@ -253,10 +258,11 @@ Given('they choose to start again with another IDP') do
   click_on('startAgain')
 end
 
-Given('they choose to go back to the {string} page') do |page|
-  visit(URI.join(env('frontend'), page))
+Given('they go back to the {string} page') do |page_name|
+  page_mapped_url = page_name_to_url_mapping(page_name)
+  visit(URI.join(env('frontend'), page_mapped_url))
 
-  page_text = page_heading_text(page)
+  page_text = page_heading_text(page_mapped_url)
   assert_text(page_text)
 end
 
@@ -351,13 +357,13 @@ Then('they should arrive at the Start page') do
   assert_text('Sign in with GOV.UK Verify')
 end
 
-Then('they should arrive at the country picker') do
+Then('they should arrive at the country picker page') do
   assert_text('Use a digital identity from another European country')
   assert_text('You can use a digital identity from another European country to access services on GOV.UK.')
   assert_current_path('/choose-a-country')
 end
 
-Then('they arrive at the IdP picker') do
+Then('they arrive at the IDP sign-in page') do
   assert_text('Who do you have an identity account with?')
 end
 
