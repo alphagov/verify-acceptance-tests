@@ -52,6 +52,9 @@ GEM
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.2-x86-mingw32)
       mini_portile2 (~> 2.3.0)
+    parallel (1.12.1)
+    parallel_tests (2.27.0)
+      parallel
     public_suffix (3.0.2)
     rack (2.0.5)
     rack-test (1.0.0)
@@ -72,10 +75,11 @@ DEPENDENCIES
   capybara-screenshot
   cucumber
   geckodriver-helper
+  parallel_tests
   selenium-webdriver
 
 RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.1
+   1.16.5
