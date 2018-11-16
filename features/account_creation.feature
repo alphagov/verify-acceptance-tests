@@ -67,7 +67,6 @@ Feature: User account creation
       | dateofbirth    | 1987-03-03     |
       | currentaddress | 123 Test Drive |
 
-
   Scenario: Sign in without cycle 3
     Given the user is at Test RP
     And we set the RP name to "test-rp-noc3"
@@ -105,7 +104,6 @@ Feature: User account creation
       | surname        | Doe            |
       | dateofbirth    | 1987-03-03     |
       | currentaddress | 123 Test Drive |
-
 
   Scenario: Sign in without cycle 3 and unsigned by hub
     Given the user is at Test RP

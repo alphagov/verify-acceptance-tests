@@ -39,6 +39,13 @@ def page_heading_text(page)
   end
 end
 
+def log_in_as(username)
+  fill_in('username', with: username)
+  fill_in('password', with: 'bar')
+  click_on('SignIn')
+  assert_text("You've successfully authenticated")
+end
+
 Before do
   visit(env('frontend')+"/cookies")
   Capybara.reset_sessions!
@@ -151,26 +158,13 @@ Given('they click Register') do
   click_on('Register')
 end
 
-Given('they login as {string}') do |username|
-  fill_in('username', with: username)
-  fill_in('password', with: 'bar')
-  click_on('SignIn')
-  click_on('I Agree')
-end
+Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_random_pid|
+  if user_string == "the newly registered user"
+    user_string = @username
+  end
 
-Given('they login as the newly registered user') do
-  fill_in('username', with: @username)
-  fill_in('password', with: 'bar')
-  click_on('SignIn')
-  click_on('I Agree')
-end
-
-Given('they login as {string} with a random pid') do |username|
-  fill_in('username', with: username)
-  fill_in('password', with: 'bar')
-  click_on('SignIn')
-  assert_text("You've successfully authenticated")
-  page.execute_script('document.getElementById("randomPid").value = "true"')
+  log_in_as(user_string)
+  page.execute_script('document.getElementById("randomPid").value = "true"') if with_random_pid
   click_on('I Agree')
 end
 
@@ -452,10 +446,7 @@ When('they click on link {string}') do |value|
 end
 
 Given('they login as {string} with {string} signing algorithm') do |username, algorithm|
-  fill_in('username', with: username)
-  fill_in('password', with: 'bar')
-  click_on('SignIn')
-  assert_text("You've successfully authenticated")
+  log_in_as(username)
   page.execute_script("document.getElementById('signingAlgorithm').value = '#{algorithm}';")
   click_on('I Agree')
 end
