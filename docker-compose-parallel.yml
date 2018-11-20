@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  verify-tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile-parallel
+
+  selenium-hub:
+    image: selenium/hub:3.14.0-iron
+    ports:
+      - "4444:4444"
+
+  firefoxnode:
+    image: selenium/node-firefox:3.14.0-iron
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5555"
+    depends_on:
+      - selenium-hub

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-if [ "$1" == "--no-browser" ]
-then
-    SHOW_BROWSER=false
-fi
-
 set -eu
+
+if [ "${1:-}" == "--no-parallel" ]
+then
+    SHOW_BROWSER=true
+    INSTANCES=1
+fi
 
 bundle --quiet
 mkdir -p testreport
-SHOW_BROWSER=${SHOW_BROWSER:-"true"} TEST_ENV=local bundle exec parallel_cucumber features/
+SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=local bundle exec parallel_cucumber features/ -n ${INSTANCES:-3} -o "--strict"
