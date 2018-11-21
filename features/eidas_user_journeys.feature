@@ -66,7 +66,6 @@ Feature: eIDAS user journeys
       | surname     | Doe        |
       | dateofbirth | 1987-03-03 |
 
-
   @Eidas
   Scenario: User signs creates a new account
     Given the user is at Test RP
