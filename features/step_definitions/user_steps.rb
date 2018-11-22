@@ -508,8 +508,8 @@ When ('frontend session times out') do
   step('clear "_verify-frontend_session" cookie')
 end
 
-When ('clear {string} cookie') do|cookie_name|
-  page.driver.browser.manage.delete_cookie(name: cookie_name)
+When ('clear {string} cookie') do |cookie_name|
+  page.driver.browser.manage.delete_cookie(cookie_name)
 end
 
 When('they click a resume link in an e-mail from IDP with link for simpleId {string}') do |idp_simple_id|
