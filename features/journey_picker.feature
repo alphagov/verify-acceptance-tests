@@ -2,25 +2,15 @@ Feature: Page to pick between Verify and eIDAS journeys
 
   Test that a page appears to allow the user to select between
   Verify and eIDAS when there is no journey hint supplied and
-  the service has eIDAS enabled.
+  the service has or has not eIDAS enabled.
 
 
-  Scenario: Verify button on picker page goes to Start page
+  Scenario: RP with eIDAS enabled triggers the journey picker
     Given the user is at Test RP
     When they start a journey
-    And they choose to use Verify
-    Then they should arrive at the Start page
+    Then they should arrive at the prove identity page
 
-
-  @Eidas
-  Scenario: eIDAS button on picker page goes to country picker page
-    Given the user is at Test RP
-    When they start a journey
-    And they choose to use a European identity scheme
-    Then they should arrive at the country picker page
-
-
-  Scenario: RP without eIDAS enabled doesn't trigger picker
+  Scenario: RP without eIDAS enabled doesn't trigger the journey picker
     Given the user is at Test RP
     And we set the RP name to "test-rp-non-eidas"
     When they start a journey
