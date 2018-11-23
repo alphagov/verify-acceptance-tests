@@ -73,7 +73,7 @@ Feature: User Back button
     Then they should arrive at the "Stub Idp Demo One" Cancel Registration page
 
   @Eidas
-  Scenario: EID-1053, User fails to authenticate presses back button and tries again
+  Scenario: User fails to authenticate presses back button and tries again
     Given the user is at Test RP
     And they start an eIDAS journey
     And they select eIDAS scheme "Stub IDP Demo"
