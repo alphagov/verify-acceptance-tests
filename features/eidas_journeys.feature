@@ -52,3 +52,10 @@ Feature: eIDAS user journeys
     And they select IDP "Stub IDP Demo"
     And they login as "stub-country" with "rsassa-pss" signing algorithm
     Then they should be successfully verified
+
+  @Eidas
+  Scenario: User selects unavailable eIDAS scheme and arrives at the correct error page
+    Given the user is at Test RP
+    When they start an eIDAS journey
+    And they select eIDAS scheme "Invalid Scheme"
+    Then they should arrive at the eIDAS scheme unavailable error page
