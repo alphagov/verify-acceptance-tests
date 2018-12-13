@@ -2,9 +2,9 @@
 
 set -eu
 
-if [ "${1:-}" == "--no-parallel" ]
+if [[ "${1:-}" == "--no-parallel" ]]
 then
-    SHOW_BROWSER=true
+    SHOW_BROWSER=${SHOW_BROWSER:-true}
     INSTANCES=1
 fi
 

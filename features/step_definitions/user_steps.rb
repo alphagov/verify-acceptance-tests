@@ -401,13 +401,17 @@ Then('they should arrive at the Failed country sign in page') do
   assert_current_path('/failed-country-sign-in')
 end
 
-Then('our Consent page should show "Level of assurance" = {string}') do |assurance_level|
+Then('they should arrive at the eIDAS scheme unavailable error page') do
+  assert_current_path('/redirect-to-country')
+  assert_text(/Your identity scheme in .* is currently unavailable/)
+end
 
+Then('our Consent page should show "Level of assurance" = {string}') do |assurance_level|
   assert_text("You've successfully authenticated with #{@idp}")
   assert_text("#{assurance_level}")
 end
 
-Then ('they are shown the cookies missing page') do
+Then('they are shown the cookies missing page') do
   assert_text('GOV.UK Verify can only be accessed from a government service.')
   assert_text("If you can’t access GOV.UK Verify from a service, enable your cookies.")
 end
