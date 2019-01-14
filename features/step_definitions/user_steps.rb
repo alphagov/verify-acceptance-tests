@@ -78,14 +78,14 @@ Given('they start a journey') do
 end
 
 Given('they select sign in option') do
-  choose('start_form_selection_false')
+  choose('start_form_selection_false', allow_label_click: true)
   click_on('Continue')
 end
 
 Given('they start a sign in journey') do
   click_on('Start')
   click_on('Use GOV.UK Verify') if see_journey_picker?
-  choose('start_form_selection_false')
+  choose('start_form_selection_false', allow_label_click: true)
   click_on('Continue')
 end
 
@@ -96,7 +96,7 @@ end
 
 Given('this is their first time using Verify') do
   click_on('Use GOV.UK Verify') if see_journey_picker?
-  choose('start_form_selection_true')
+  choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
   click_on('Next')
   click_on('Next')
@@ -105,20 +105,20 @@ Given('this is their first time using Verify') do
 end
 
 Given('they choose a registration journey') do
-  choose('start_form_selection_true')
+  choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
   click_on('Next')
   click_on('Next')
   click_on('Start now')
   click_on('Continue')
 
-  choose('will_it_work_for_me_form_above_age_threshold_true')
-  choose('will_it_work_for_me_form_resident_last_12_months_true')
+  choose('will_it_work_for_me_form_above_age_threshold_true', allow_label_click: true)
+  choose('will_it_work_for_me_form_resident_last_12_months_true', allow_label_click: true)
   click_on('Continue')
 end
 
 Given('they choose an loa1 registration journey') do
-  choose('start_form_selection_true')
+  choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
   click_on('Next')
   click_on('Next')
@@ -126,14 +126,14 @@ Given('they choose an loa1 registration journey') do
 end
 
 And('they are above the age threshold') do
-  choose('will_it_work_for_me_form_above_age_threshold_true')
-  choose('will_it_work_for_me_form_resident_last_12_months_true')
+  choose('will_it_work_for_me_form_above_age_threshold_true', allow_label_click: true)
+  choose('will_it_work_for_me_form_resident_last_12_months_true', allow_label_click: true)
   click_on('Continue')
 end
 
 And('they are below the age threshold') do
-  choose('will_it_work_for_me_form_above_age_threshold_false')
-  choose('will_it_work_for_me_form_resident_last_12_months_true')
+  choose('will_it_work_for_me_form_above_age_threshold_false', allow_label_click: true)
+  choose('will_it_work_for_me_form_resident_last_12_months_true', allow_label_click: true)
   click_on('Continue')
 end
 
@@ -174,31 +174,31 @@ Given('they submit cycle 3 {string}') do |string|
 end
 
 Given('they have all their documents') do
-  choose('select_documents_form_any_driving_licence_true')
-  choose('Great Britain')
-  choose('select_documents_form_passport_true')
+  choose('select_documents_form_any_driving_licence_true', allow_label_click: true)
+  choose('Great Britain', allow_label_click: true)
+  choose('select_documents_form_passport_true', allow_label_click: true)
   click_on('Continue')
 end
 
 Given('they do not have their documents') do
-  choose('select_documents_form_any_driving_licence_false')
-  choose('select_documents_form_passport_false')
+  choose('select_documents_form_any_driving_licence_false', allow_label_click: true)
+  choose('select_documents_form_passport_false', allow_label_click: true)
   click_on('Continue')
 end
 
 Given('they do not have other identity documents') do
-  choose('other_identity_documents_form_non_uk_id_document_false')
+  choose('other_identity_documents_form_non_uk_id_document_false', allow_label_click: true)
   click_on('Continue')
 end
 
 Given('they have a smart phone') do
-  choose('select_phone_form_mobile_phone_true')
-  choose('select_phone_form_smart_phone_true')
+  choose('select_phone_form_mobile_phone_true', allow_label_click: true)
+  choose('select_phone_form_smart_phone_true', allow_label_click: true)
   click_on('Continue')
 end
 
 Given('they do not have a phone') do
-  choose('select_phone_form_mobile_phone_false')
+  choose('select_phone_form_mobile_phone_false', allow_label_click: true)
   click_on('Continue')
 end
 
@@ -423,7 +423,7 @@ end
 And('they enter some feedback and submit the form') do
   fill_in('feedback_form_what', with: 'Acceptance testing')
   fill_in('feedback_form_details', with: 'Feedback form testing')
-  choose('feedback_form_reply_true')
+  choose('feedback_form_reply_true', allow_label_click: true)
   fill_in('feedback_form_name', with: 'Acc Test')
   fill_in('feedback_form_email', with: 'acctest@example.com')
   click_on('Send message')
