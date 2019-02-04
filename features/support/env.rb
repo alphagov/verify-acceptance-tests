@@ -10,7 +10,23 @@ show_browser = ENV['SHOW_BROWSER'] == 'true'
 
 ### Driver config ###
 
-if ENV['TEST_ENV'] == 'local' || ENV['SHOW_BROWSER']
+if ENV.key?('SELENIUM_HUB_URL')
+  selenium_hub_url    = "#{ENV.fetch('SELENIUM_HUB_URL')}/wd/hub"
+  caps                = Selenium::WebDriver::Remote::Capabilities.firefox
+  Capybara.run_server = false
+
+  Capybara.register_driver :remote_browser do |app|
+		Capybara::Selenium::Driver.new(
+			app,
+			:browser => :remote,
+			url: selenium_hub_url,
+			desired_capabilities: caps
+		)
+	end
+
+	Capybara.default_driver    = :remote_browser
+	Capybara.javascript_driver = :remote_browser
+elsif ENV['TEST_ENV'] == 'local' || ENV['SHOW_BROWSER']
   Capybara.register_driver :firefox_driver do |app|
     options = ::Selenium::WebDriver::Firefox::Options.new
     options.args << '--headless' unless show_browser
