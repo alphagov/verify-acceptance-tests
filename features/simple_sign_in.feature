@@ -27,6 +27,8 @@ Feature: User simple flows - sign in
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     And they finish registering
+    And the user is at Test RP
+    And they start a sign in journey
     Then they should see the disconnected IDP hint for "Stub Idp Disconnected"
 
   Scenario: Sign in without cycle 3 and unsigned by hub

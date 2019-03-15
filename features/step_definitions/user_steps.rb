@@ -556,6 +556,5 @@ And('they finish registering') do
   step('they give their consent')
   step('they click continue on the confirmation page')
   step('they should be successfully verified')
-  click_on('Confirm Identity')
-  click_on('sign in with a different certified company')
+  click_on('Logout')
 end
