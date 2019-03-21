@@ -547,3 +547,14 @@ end
 Given('the IDP fails to authenticate user') do
   click_on('Authn Failure')
 end
+
+Then('they should see the disconnected IDP hint for {string}') do |idp|
+  assert_text("This is tailored text for when #{idp} is disconnected")
+end
+
+And('they finish registering') do
+  step('they give their consent')
+  step('they click continue on the confirmation page')
+  step('they should be successfully verified')
+  click_on('Logout')
+end

@@ -13,7 +13,23 @@ Feature: User simple flows - sign in
   Scenario: User cannot sign in using a disconnected IDP
     Given the user is at Test RP
     And they start a sign in journey
-    Then they cannot sign in with IDP "Stub Idp Demo Three"
+    Then they cannot sign in with IDP "Stub Idp Disconnected"
+
+  Scenario: User can see disconnected IDP hint
+    Given the user is at Test RP
+    And they start a registration journey with IDP "Stub Idp Disconnected"
+    And they submit user details:
+      | firstname       | Jane       |
+      | surname         | Doe        |
+      | addressLine1    | 123        |
+      | addressLine2    | Test Drive |
+      | addressTown     | Marlbury   |
+      | addressPostCode | ABC 123    |
+      | dateOfBirth     | 1987-03-03 |
+    And they finish registering
+    And the user is at Test RP
+    And they start a sign in journey
+    Then they should see the disconnected IDP hint for "Stub Idp Disconnected"
 
   Scenario: Sign in without cycle 3 and unsigned by hub
     Given the user is at Test RP
