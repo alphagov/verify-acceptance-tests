@@ -418,6 +418,7 @@ end
 
 When('they go to the feedback form') do
   page.find(:xpath, "//a[contains(text(),'feedback form')]").click
+  page.find(:xpath, "//a[contains(text(),'Give feedback on GOV.UK Verify')]").click
 end
 
 And('they enter some feedback and submit the form') do
