@@ -541,10 +541,6 @@ Then('they land on the continue to idp page') do
   assert_current_path('/continue-to-your-idp')
 end
 
-When("the entity id is mangled") do
-  execute_script("document.getElementsByName('entity_id')[0].value = ''")
-end
-
 Given('they continue to the idp') do
   click_on('continue-to-idp-button')
 end
