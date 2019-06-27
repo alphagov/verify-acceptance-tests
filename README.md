@@ -6,7 +6,7 @@ Hopefully, they'll be more maintainable than what we have now.
 
 ## Running
 
-Running against joint:
+Running against staging:
 ```
 ./run-tests-with-docker.sh [features-to-run]
 ```
@@ -25,7 +25,7 @@ To run them for a different test environment, export the `TEST_ENV` environment 
 
   * local
   * docker-local
-  * joint
+  * staging
 
 ## Configuration
 

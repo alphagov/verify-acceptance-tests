@@ -9,7 +9,7 @@ echo "Waiting $((2+$NODES)) seconds for the nodes to join the selenium hub"
 sleep $((2+$NODES))
 docker-compose run \
                --name verify-tests \
-               -e TEST_ENV=${TEST_ENV:-"joint"} \
+               -e TEST_ENV=${TEST_ENV:-"staging"} \
                verify-tests -n $NODES -o "--strict -f pretty -f junit -o testreport/ $*"
 exit_status=$?
 docker cp $(docker ps -a -q -f name="verify-tests"):/testreport .
