@@ -18,7 +18,7 @@ docker-local:
 
 staging:
   frontend: https://www.staging.signin.service.gov.uk
-  test-rp: https://test-rp-stub-staging.ida.digital.cabinet-office.gov.uk/test-rp
+  test-rp: https://test-rp-staging.cloudapps.digital/test-rp
   idps:
     Stub Country: https://ida-stub-idp-staging.cloudapps.digital/eidas/stub-country/
     Stub Idp Demo One: https://ida-stub-idp-staging.cloudapps.digital/stub-idp-demo-one/
