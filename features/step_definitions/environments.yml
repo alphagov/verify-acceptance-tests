@@ -24,3 +24,12 @@ staging:
     Stub Idp Demo One: https://stub-idp-staging.cloudapps.digital/stub-idp-demo-one/
     Stub Idp Demo Two: https://stub-idp-staging.cloudapps.digital/stub-idp-demo-two/
     Stub Idp Disconnected: https://stub-idp-staging.cloudapps.digital/stub-idp-disconnected/
+
+integration:
+  frontend: https://www.integration.signin.service.gov.uk
+  test-rp: https://test-rp-integration.cloudapps.digital/test-rp
+  idps:
+    Stub Country: https://ida-stub-idp-integration.cloudapps.digital/eidas/stub-country/
+    Stub Idp Demo One: https://idp-stub-integration.ida.digital.cabinet-office.gov.uk/stub-idp-demo-one/
+    Stub Idp Demo Two: https://idp-stub-integration.ida.digital.cabinet-office.gov.uk/stub-idp-demo-two/
+    Stub Idp Disconnected: https://idp-stub-integration.ida.digital.cabinet-office.gov.uk/stub-idp-disconnected/
