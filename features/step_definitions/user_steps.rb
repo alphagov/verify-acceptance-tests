@@ -169,11 +169,7 @@ Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_rando
 end
 
 And('they choose unsigned assertions') do
-  all('input[type=checkbox][value="signAssertions"]').each do |checkbox|
-    if checkbox.checked? then 
-      checkbox.click
-    end
-  end
+  uncheck("assertionOptions_signAssertions")
 end
 
 Given('they submit cycle 3 {string}') do |string|
