@@ -51,7 +51,7 @@ Feature: eIDAS user journeys with user account creation
       | dateofbirth | 1987-03-03 |
 
   @Eidas
-  Scenario: User signs and creates a new account with stub country, for unsigned assertions
+  Scenario: User signs in and creates a new account with stub country, for unsigned assertions
     Given the user is at Test RP
     And we do not want to match the user
     And they start an eIDAS journey
