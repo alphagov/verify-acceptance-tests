@@ -37,7 +37,7 @@ Feature: eIDAS user journeys
     Then they should be successfully verified
 
   @Eidas
-  Scenario: User signs in with a country and does Cycle 3
+  Scenario: User signs in with a country and does Cycle 3 for an ambiguous match
     Given the user is at Test RP
     And they start an eIDAS journey
     And they select IDP "Stub IDP Demo"
@@ -59,3 +59,22 @@ Feature: eIDAS user journeys
     When they start an eIDAS journey
     And they select eIDAS scheme "Invalid Scheme"
     Then they should arrive at the eIDAS scheme unavailable error page
+
+  @Eidas
+  Scenario: User signs in with a country that provides unsigned assertions
+    Given the user is at Test RP
+    And they start an eIDAS journey
+    And they select IDP "Stub IDP Demo"
+    And they choose unsigned assertions
+    And they login as "stub-country"
+    Then they should be successfully verified
+
+  @Eidas
+  Scenario: User signs in with a country that provides unsigned assertions and does Cycle 3 for an ambiguous match
+    Given the user is at Test RP
+    And they start an eIDAS journey
+    And they select IDP "Stub IDP Demo"
+    And they choose unsigned assertions
+    And they login as "stub-country-ec3"
+    And they submit cycle 3 "AA123456A"
+    Then they should be successfully verified
