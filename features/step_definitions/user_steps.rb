@@ -168,6 +168,10 @@ Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_rando
   click_on('I Agree')
 end
 
+And('they choose unsigned assertions') do
+  uncheck("assertionOptions_signAssertions")
+end
+
 Given('they submit cycle 3 {string}') do |string|
   fill_in('cycle_three_attribute[cycle_three_data]', with: string)
   click_on('Continue')
