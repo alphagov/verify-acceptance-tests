@@ -56,6 +56,11 @@ Given('the user is at Test RP') do
   @see_journey_picker = true
 end
 
+Given('the user is at {string}') do |url|
+  visit(url)
+  @see_journey_picker = true
+end
+
 Given('we do not want to match the user') do
   check('no-match')
 end
