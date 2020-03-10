@@ -2,6 +2,7 @@ Feature: eidas-connector-node-smoke-test-et-prod
 
     This tests the Estonia connector node
 
+    @EidasIntegration
     Scenario: Connector node happy path for Estonia
         Given   the user visits a Government service
         And     they choose sign in with a digital identity from another European country
