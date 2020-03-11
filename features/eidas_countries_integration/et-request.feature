@@ -1,11 +1,11 @@
 Feature: eidas-connector-node-smoke-test-et-prod
 
-    This tests the Estonia connector node
+    This tests the connection of the UK Connector Node to the Estonian Proxy Node
 
     @EidasIntegration
-    Scenario: Connector node happy path for Estonia
-        Given   the user visits a Government service
-        And     they choose sign in with a digital identity from another European country
+    Scenario: Send a request to sign in with an Estonian identity
+        Given   the user visits a UK Government service
+        And     they choose to sign in with a digital identity from another European country
         And     they select Estonia
-        And     they navigate through Eidas
+        And     they navigate through the eIDAS CEF reference implementation node
         Then    they should arrive at the Estonia Hub

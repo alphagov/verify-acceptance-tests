@@ -47,7 +47,7 @@ def log_in_as(username)
 end
 
 Before do
-  visit(env('frontend')+"/cookies")
+  visit(env('frontend') + '/cookies')
   Capybara.reset_sessions!
 end
 
@@ -569,11 +569,11 @@ And('they finish registering') do
   click_on('Logout')
 end
 
-Given("the user visits a Government service") do
+Given('the user visits a UK Government service') do
   visit('https://www.gov.uk/personal-tax-account/sign-in/prove-identity')
 end
 
-And('they choose sign in with a digital identity from another European country') do
+And('they choose to sign in with a digital identity from another European country') do
   find('label', text: 'Sign in with a digital identity from another European country').click
   click_button('Continue')
 end
@@ -618,7 +618,7 @@ Then('they should arrive at the Belgium Hub') do
   assert_text('Choose your digital key to log in')
 end 
 
-And('they navigate through Eidas') do
+And('they navigate through the eIDAS CEF reference implementation node') do
   assert_text('YOUR BASIC INFORMATION')
   click_button('Next')
   assert_text('YOUR ADDITIONAL INFORMATION')
