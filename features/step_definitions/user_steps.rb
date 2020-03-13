@@ -283,7 +283,7 @@ Given /they submit (loa1 |)user details:$/ do |assurance_level, details|
     fill_in(input, with: value)
 
     if input == 'firstname'
-            @username = value + SecureRandom.hex
+      @username = value + SecureRandom.hex
     end
   end
 
@@ -371,7 +371,7 @@ Then('they arrive at the IDP sign-in page') do
 end
 
 Then('they arrive at the confirm identity page for {string}') do |idp|
-  assert_text('Sign in with '+idp)
+  assert_text('Sign in with ' + idp)
 end
 
 Then('they should arrive at the prove identity page') do
@@ -448,7 +448,7 @@ And('they go back to the start page') do
 end
 
 When('they click button {string}') do |value|
-  if value == ('Sign in with '+@idp)
+  if value == ('Sign in with ' + @idp)
     page.find(:xpath, "//button[contains(text(), '#{value}')]").click
   else
     page.find(:xpath, "//input[@value= '#{value}']").click
@@ -510,19 +510,19 @@ Given('they are on a different device') do
   Capybara.reset_sessions!
 end
 
-When ('they visit the paused page') do
-  visit(env('frontend')+"/paused")
+When('they visit the paused page') do
+  visit(env('frontend') + "/paused")
 end
 
 Then('they will be at the Test RP start page') do
   assert_current_path(env('test-rp'))
 end
 
-When ('frontend session times out') do
+When('frontend session times out') do
   step('clear "_verify-frontend_session" cookie')
 end
 
-When ('clear {string} cookie') do |cookie_name|
+When('clear {string} cookie') do |cookie_name|
   page.driver.browser.manage.delete_cookie(cookie_name)
 end
 
@@ -578,45 +578,18 @@ And('they choose to sign in with a digital identity from another European countr
   click_button('Continue')
 end
 
-And('they select Spain') do
-  click_button('Select DNIe')
+And('they select {string} scheme') do |scheme|
+  click_button("Select #{scheme}")
 end
 
-Then('they should arrive at the Spain Hub') do
-  assert_text('Identificación con DNIe')
+Then('they should arrive at a page with text {string}') do |content|
+  assert_text(content)
 end
 
-And('they select Estonia') do
-  click_button('Select ID-kaart')
+And('the page should not have an error message') do
+  assert_no_text(/error/i)
+  assert_no_text(/problem/i)
 end
-
-Then('they should arrive at the Estonia Hub') do
-  assert_text('Turvaliseks autentimiseks Euroopa e-teenustes')
-end 
-
-And('they select Italy') do
-  click_button('Select SPID')
-end
-
-Then('they should arrive at the Italy Hub') do
-  assert_text('Italian eIDAS Login')
-end 
-
-And('they select Luxembourg') do
-  click_button('Select eAccess')
-end
-
-Then('they should arrive at the Luxembourg Hub') do
-  assert_text('eIDAS Authentication Service')
-end 
-
-And('they select Belgium') do
-  click_button('Select CSAM')
-end
-
-Then('they should arrive at the Belgium Hub') do
-  assert_text('Choose your digital key to log in')
-end 
 
 And('they navigate through the eIDAS CEF reference implementation node') do
   assert_text('YOUR BASIC INFORMATION')
