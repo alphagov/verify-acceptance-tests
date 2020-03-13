@@ -5,13 +5,13 @@ set -u
 
 docker-compose build verify-tests
 docker-compose up -d --scale firefoxnode=$NODES selenium-hub firefoxnode 
-echo "Waiting $((2+$NODES)) seconds for the nodes to join the selenium hub"
-sleep $((2+$NODES))
+echo "Waiting $((2+NODES)) seconds for the nodes to join the selenium hub"
+sleep $((2+NODES))
 docker-compose run \
                --name verify-tests \
-               -e TEST_ENV=${TEST_ENV:-"staging"} \
-               verify-tests -n $NODES -o "--strict -f pretty -f junit -o testreport/ $*"
+               -e TEST_ENV="${TEST_ENV:-"staging"}" \
+               verify-tests -n $NODES -o "--strict -f pretty -f junit -o testreport/ --tags 'not @ignore' $*"
 exit_status=$?
-docker cp $(docker ps -a -q -f name="verify-tests"):/testreport .
+docker cp "$(docker ps -a -q -f name='verify-tests')":/testreport .
 docker-compose down 
 exit $exit_status
