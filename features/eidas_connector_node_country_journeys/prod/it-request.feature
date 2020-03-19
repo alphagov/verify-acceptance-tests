@@ -8,5 +8,5 @@ Feature: eidas-connector-node-smoke-test-it-prod
         And     they choose to sign in with a digital identity from another European country
         And     they select 'SPID' scheme
         And     they navigate through the eIDAS CEF reference implementation node
-        Then    they should arrive at a page with text 'eIDAS Authentication Service'
+        Then    they should arrive at a page with text 'Italian eIDAS Login'
         And     the page should not have an error message
