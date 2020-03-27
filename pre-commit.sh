@@ -10,4 +10,4 @@ fi
 
 bundle --quiet
 mkdir -p testreport
-SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec parallel_cucumber features/ -n ${INSTANCES:-3} -o "--strict"
+SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec parallel_cucumber features/ -n ${INSTANCES:-3} -o "--strict --tags 'not @ignore'"
