@@ -74,6 +74,11 @@ Given('we set the RP name to {string}') do |name|
   @see_journey_picker = false
 end
 
+Given('we set the RP name to {string} and eidas is enabled') do |name|
+  fill_in('rp-name', with: name)
+  @see_journey_picker = true
+end
+
 Given('they select journey hint {string}') do |hint|
   select(hint, from: 'journey_hint')
 end

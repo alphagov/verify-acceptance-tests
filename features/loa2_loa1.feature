@@ -4,8 +4,9 @@ Feature: User loa2 loa1
 
   Scenario: Loa1 Registration successful with IDP
     Given the user is at Test RP
-    And we set the RP name to "loa2-loa1-test-rp"
-    When they start a journey
+    And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
+    And they start a journey
+    And they choose to use Verify
     And they choose an loa1 registration journey
     And they register for an LOA1 profile with IDP "Stub Idp Demo One"
     When they submit loa1 user details:
@@ -23,9 +24,10 @@ Feature: User loa2 loa1
 
   Scenario: LOA2 Registration with cycle 3
     Given the user is at Test RP
-    And we set the RP name to "loa2-loa1-test-rp"
+    And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
     And we do not want to match the user
     And they start a journey
+    And they choose to use Verify
     And they choose an loa1 registration journey
     And they continue to register with IDP "Stub Idp Demo One"
     And they submit user details:
@@ -47,7 +49,7 @@ Feature: User loa2 loa1
 
   Scenario: Sign in successful at LOA1 with IDP
     Given the user is at Test RP
-    And we set the RP name to "loa2-loa1-test-rp"
+    And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
     When they start a sign in journey
     And they select IDP "Stub Idp Demo One"
     And they login as "stub-idp-demo-one-loa1"
@@ -55,8 +57,17 @@ Feature: User loa2 loa1
 
   Scenario: Sign in successful at LOA2 with IDP
     Given the user is at Test RP
-    And we set the RP name to "loa2-loa1-test-rp"
+    And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
     When they start a sign in journey
     And they select IDP "Stub Idp Demo One"
     And they login as "stub-idp-demo-one"
     Then they should be successfully verified with level of assurance "LEVEL_2"
+
+  @Eidas
+  Scenario: User signs in with a country
+    Given the user is at Test RP
+    And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
+    And they start an eIDAS journey
+    And they select IDP "Stub IDP Demo"
+    And they login as "stub-country"
+    Then they should be successfully verified
