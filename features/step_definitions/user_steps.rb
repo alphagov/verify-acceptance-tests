@@ -218,7 +218,6 @@ end
 
 Given('they continue to register with IDP {string}') do |idp|
   click_on("Choose #{idp}")
-  click_on('Continue')
   click_on("Continue to the #{idp} website")
   @idp = "#{idp}"
 end
