@@ -218,7 +218,6 @@ end
 
 Given('they continue to register with IDP {string}') do |idp|
   click_on("Choose #{idp}")
-  click_on('Continue')
   click_on("Continue to the #{idp} website")
   @idp = "#{idp}"
 end
@@ -229,8 +228,7 @@ end
 
 Given('they register for an LOA1 profile with IDP {string}') do |idp|
   click_on("Choose #{idp}")
-  click_on('Continue')
-  assert_text(idp)
+  assert_text('Create your ' + idp + ' identity account')
   click_on("Continue to the #{idp} website")
   @idp = "#{idp}"
 end
