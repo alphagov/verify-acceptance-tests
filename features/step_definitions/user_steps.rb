@@ -404,7 +404,7 @@ Then('they should arrive at the Sign in page') do
 end
 
 Then('they should arrive at the Failed registration page') do
-  assert_text('was unable to verify your identity')
+  assert_text('could not verify your identity')
 end
 
 Then('they should arrive at the Failed sign in page') do
