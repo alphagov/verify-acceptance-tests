@@ -25,5 +25,11 @@ staging:
     Stub Idp Demo Two: https://stub-idp-staging.cloudapps.digital/stub-idp-demo-two/
     Stub Idp Disconnected: https://stub-idp-staging.cloudapps.digital/stub-idp-disconnected/
 
+integration:
+  frontend: https://www.integration.signin.service.gov.uk
+  test-rp: https://test-rp-integration.cloudapps.digital/test-rp
+  idps:
+    Stub Idp Demo Two: https://stub-idp-integration.cloudapps.digital/stub-idp-demo-two/
+
 prod:
   frontend: https://www.signin.service.gov.uk
