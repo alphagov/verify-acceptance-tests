@@ -1,4 +1,4 @@
-Feature: eidas-connector-node-smoke-test-lu-prod
+Feature: eIDAS Connector Node Smoke Test - Luxembourg - Production
 
     This tests the connection of the UK Connector Node to the Luxembourg Proxy Node
 

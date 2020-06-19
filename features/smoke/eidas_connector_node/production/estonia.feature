@@ -1,4 +1,4 @@
-Feature: eidas-connector-node-smoke-test-et-prod
+Feature: eIDAS Connector Node Smoke Test - Estonia - Production
 
     This tests the connection of the UK Connector Node to the Estonian Proxy Node
 

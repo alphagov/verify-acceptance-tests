@@ -1,4 +1,4 @@
-Feature: eidas-connector-node-smoke-test-pt-prod
+Feature: eIDAS Connector Node Smoke Test - Portugal - Integration
 
     This tests the connection of the UK Connector Node to the Portuguese Proxy Node
 

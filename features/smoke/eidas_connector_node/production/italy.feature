@@ -1,4 +1,4 @@
-Feature: eidas-connector-node-smoke-test-it-prod
+Feature: eIDAS Connector Node Smoke Test - Italy - Production
 
     This tests the connection of the UK Connector Node to the Italian Proxy Node
 

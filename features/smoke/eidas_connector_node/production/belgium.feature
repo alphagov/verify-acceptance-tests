@@ -1,4 +1,4 @@
-Feature: eidas-connector-node-smoke-test-be-prod
+Feature: eIDAS Connector Node Smoke Test - Belgium - Production
 
     This tests the connection of the UK Connector Node to the Belgian Proxy Node
 
