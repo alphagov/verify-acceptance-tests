@@ -1,4 +1,4 @@
-Feature: eidas-connector-node-smoke-test-es-prod
+Feature: eIDAS Connector Node Smoke Test - Spain - Production
 
     This tests the connection of the UK Connector Node to the Spanish Proxy Node
 
