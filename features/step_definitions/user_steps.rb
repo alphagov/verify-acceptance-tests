@@ -283,7 +283,6 @@ Given('they want to cancel registration') do
 end
 
 Given /they submit (loa1 |)user details:$/ do |assurance_level, details|
-
   details.rows_hash.each do |input, value|
     fill_in(input, with: value)
 
@@ -301,6 +300,12 @@ Given /they submit (loa1 |)user details:$/ do |assurance_level, details|
   click_on('Register')
 end
 
+Given('they provide details:') do |details|
+  details.rows_hash.each do |input, value|
+    fill_in(input, with: value)
+  end
+end
+
 Given('they give their consent') do
   click_on('I Agree')
 end
@@ -309,7 +314,7 @@ Given('they click continue on the confirmation page') do
   click_on('Continue')
 end
 
-Given('they enter eidas user details:') do |details|
+Given('they enter eIDAS user details:') do |details|
   details.rows_hash.each do |input, value|
     fill_in(input, with: value)
   end
@@ -453,10 +458,14 @@ And('they go back to the start page') do
 end
 
 When('they click button {string}') do |value|
-  if value == ('Sign in with ' + @idp)
-    page.find(:xpath, "//button[contains(text(), '#{value}')]").click
+  if @idp
+    if value == ('Sign in with ' + @idp)
+      page.find(:xpath, "//button[contains(text(), '#{value}')]").click
+    else
+      page.find(:xpath, "//input[@value= '#{value}']").click
+    end
   else
-    page.find(:xpath, "//input[@value= '#{value}']").click
+    click_button(value)
   end
 end
 
