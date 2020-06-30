@@ -9,7 +9,7 @@ Feature: eIDAS user journeys with user account creation
     And they start an eIDAS journey
     And they select IDP "Stub IDP Demo"
     And they click Register
-    And they enter eidas user details:
+    And they enter eIDAS user details:
       | firstname   | Bob        |
       | surname     | Doe        |
       | dateOfBirth | 1987-03-03 |
@@ -40,7 +40,7 @@ Feature: eIDAS user journeys with user account creation
     And they select IDP "Stub IDP Demo"
     And they choose unsigned assertions
     And they click Register
-    And they enter eidas user details:
+    And they enter eIDAS user details:
       | firstname   | Bob        |
       | surname     | Doe        |
       | dateOfBirth | 1987-03-03 |
