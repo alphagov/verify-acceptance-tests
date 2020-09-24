@@ -16,3 +16,4 @@ Feature: Compatibility with old supported MSA versions
     | https://test-rp-staging-backcompat-1.cloudapps.digital/test-rp/ |
     | https://test-rp-staging-backcompat-2.cloudapps.digital/test-rp/ |
     | https://test-rp-staging-backcompat-3.cloudapps.digital/test-rp/ |
+    | https://test-rp-staging-backcompat-4.cloudapps.digital/test-rp/ |
