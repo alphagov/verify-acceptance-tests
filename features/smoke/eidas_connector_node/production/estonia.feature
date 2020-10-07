@@ -9,5 +9,5 @@ Feature: eIDAS Connector Node Smoke Test - Estonia - Production
         And     they select 'ID-kaart' scheme
         And     they navigate through the eIDAS CEF reference implementation node
         And     they click button "ENGLISH"
-        Then    they should arrive at a page with text 'Secure authentication in e-Services of EU member states'
+        Then    they should arrive at a page with text 'Secure authentication for e-services'
         And     the page should not have an error message
