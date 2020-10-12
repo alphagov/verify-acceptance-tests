@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 pretty_print_countries() {
   local failed_tests=($(cat $1))

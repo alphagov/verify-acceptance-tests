@@ -2,3 +2,7 @@
 .idea
 testreport
 *.iml
+.gradle
+concourse-bot/.gradle
+concourse-bot/.idea
+concourse-bot/build
