@@ -8,6 +8,6 @@ Feature: eIDAS Connector Node Smoke Test - Estonia - Production
         And     they choose to sign in with a digital identity from another European country
         And     they select 'ID-kaart' scheme
         And     they navigate through the eIDAS CEF reference implementation node
-        And     they click button "ENGLISH"
+        And     they click on link "ENGLISH"
         Then    they should arrive at a page with text 'Secure authentication for e-services'
         And     the page should not have an error message
