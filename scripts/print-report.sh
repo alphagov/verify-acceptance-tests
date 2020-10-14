@@ -19,8 +19,15 @@ num_failed_cn=${#cn_countries[@]}
 [[ $num_failed_pn -eq 0 && $num_failed_cn -eq 0 ]] && exit 0
 
 echo "There are $num_failed_pn PN and $num_failed_cn CN broken connections with eIDAS countries in $ENVIRONMENT"
-[[ $num_failed_pn -gt 0 ]] && echo "Failed Proxy Node countries: ${pn_countries[@]}"
-[[ $num_failed_cn -gt 0 ]] && echo "Failed Connector Node countries: ${cn_countries[@]}"
+if [[ $num_failed_pn -gt 0 ]] ; then
+  echo "Failed Proxy Node countries: ${pn_countries[@]}"
+  echo $num_failed_pn > proxy_node_failures;
+fi
+
+if [[ $num_failed_cn -gt 0 ]] ; then
+  echo "Failed Connector Node countries: ${cn_countries[@]}"
+  echo $num_failed_cn > connector_node_failures;
+fi
 
 cat <<json >message
 {'blocks': [
