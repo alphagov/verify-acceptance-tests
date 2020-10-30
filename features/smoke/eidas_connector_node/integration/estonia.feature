@@ -7,7 +7,6 @@ Feature: eIDAS Connector Node Smoke Test - Estonia - Integration
         Given   the user is at Test RP
         And     they start an eIDAS journey
         And     they select 'ID-kaart' scheme
-        And     they navigate through the eIDAS CEF reference implementation node
         And     they click button "ENGLISH"
         Then    they should arrive at a page with text 'Secure authentication in e-Services of EU member states'
         And     the page should not have an error message
