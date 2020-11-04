@@ -108,18 +108,12 @@ Given('this is their first time using Verify') do
   click_on('Use GOV.UK Verify') if see_journey_picker?
   choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
-  click_on('Next')
-  click_on('Next')
-  click_on('Start now')
-  click_on('Continue')
+  click_link('Continue')
 end
 
 Given('they choose a registration journey') do
   choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
-  click_on('Next')
-  click_on('Next')
-  click_on('Start now')
   click_on('Continue')
 
   choose('will_it_work_for_me_form_above_age_threshold_true', allow_label_click: true)
@@ -130,9 +124,7 @@ end
 Given('they choose an loa1 registration journey') do
   choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
-  click_on('Next')
-  click_on('Next')
-  click_on('Start now')
+  click_link('Continue')
 end
 
 And('they are above the age threshold') do
@@ -188,15 +180,13 @@ Given('they submit cycle 3 {string}') do |string|
 end
 
 Given('they have all their documents') do
-  choose('select_documents_form_any_driving_licence_true', allow_label_click: true)
-  choose('Great Britain', allow_label_click: true)
-  choose('select_documents_form_passport_true', allow_label_click: true)
-  click_on('Continue')
+  check "A valid driving licence, full or provisional, with your photo on it", allow_label_click: true
+  check "A valid passport", allow_label_click: true
 end
 
 Given('they do not have their documents') do
-  choose('select_documents_form_any_driving_licence_false', allow_label_click: true)
-  choose('select_documents_form_passport_false', allow_label_click: true)
+  uncheck "A valid driving licence, full or provisional, with your photo on it", allow_label_click: true
+  uncheck "A valid passport", allow_label_click: true
   click_on('Continue')
 end
 
@@ -212,14 +202,25 @@ Given('they have a smart phone') do
 end
 
 Given('they do not have a phone') do
-  choose('select_phone_form_mobile_phone_false', allow_label_click: true)
-  click_on('Continue')
+  uncheck "A phone or tablet that can download an app", allow_label_click: true
+end
+
+Given('they do have a phone') do
+  check "A phone or tablet that can download an app", allow_label_click: true
 end
 
 Given('they continue to register with IDP {string}') do |idp|
   click_on("Choose #{idp}")
+  @idp = "#{idp}"
+end
+
+Given('they continue with {string}') do |idp|
   click_on("Continue to the #{idp} website")
   @idp = "#{idp}"
+end
+
+Given('they click on continue') do
+  click_on("Continue")
 end
 
 Then('they cannot continue to register with disconnected IDP {string}') do |idp|
@@ -228,8 +229,6 @@ end
 
 Given('they register for an LOA1 profile with IDP {string}') do |idp|
   click_on("Choose #{idp}")
-  assert_text('Create your ' + idp + ' identity account')
-  click_on("Continue to the #{idp} website")
   @idp = "#{idp}"
 end
 
@@ -399,7 +398,7 @@ Then('they logout') do
 end
 
 Then('they should arrive at the Select documents page') do
-  assert_text('Your photo identity document')
+  assert_text('Which of these do you have available right now?')
 end
 
 Then('they should arrive at the Sign in page') do
@@ -514,9 +513,9 @@ Given('they start a registration journey with IDP {string}') do |idp|
   step('they start a journey')
   step('this is their first time using Verify')
   step('they are above the age threshold')
-  step('they do not have their documents')
-  step('they do not have other identity documents')
-  step('they have a smart phone')
+  step('they have all their documents')
+  step('they do have a phone')
+  step('they click on continue')
   step("they continue to register with IDP '#{idp}'")
 end
 
