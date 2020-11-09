@@ -8,7 +8,7 @@ Feature: eIDAS user journeys with user account creation
     And we do not want to match the user
     And they start an eIDAS journey
     And they select IDP "Stub IDP Demo"
-    And they click Register
+    And they click "Register"
     And they enter eIDAS user details:
       | firstname   | Bob        |
       | surname     | Doe        |
@@ -39,7 +39,7 @@ Feature: eIDAS user journeys with user account creation
     And they start an eIDAS journey
     And they select IDP "Stub IDP Demo"
     And they choose unsigned assertions
-    And they click Register
+    And they click "Register"
     And they enter eIDAS user details:
       | firstname   | Bob        |
       | surname     | Doe        |
