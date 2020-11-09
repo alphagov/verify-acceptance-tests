@@ -16,7 +16,7 @@ Feature: Pause and Resume User Journey
     Then they will be at the resume page for "Stub Idp Demo Two"
 
     When they resume registering with IDP "Stub Idp Demo Two"
-    And they click Register
+    And they click "Register"
     And they submit user details:
         | firstname       | Jane       |
         | surname         | Doe        |
@@ -42,7 +42,7 @@ Feature: Pause and Resume User Journey
     Then they will be at the resume page for "Stub Idp Demo Two"
 
     When they resume registering with IDP "Stub Idp Demo Two"
-    And they click Register
+    And they click "Register"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
@@ -65,7 +65,7 @@ Feature: Pause and Resume User Journey
     Then they will be at the resume page for "Stub Idp Demo Two"
 
     When they resume registering with IDP "Stub Idp Demo Two"
-    And they click Register
+    And they click "Register"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
