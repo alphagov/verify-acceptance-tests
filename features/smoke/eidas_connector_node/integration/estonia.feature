@@ -7,7 +7,7 @@ Feature: eIDAS Connector Node Smoke Test - Estonia - Integration
         Given   the user is at Test RP
         And     they start an eIDAS journey
         And     they select 'ID-kaart' scheme
-        And     they click button "ENGLISH"
+        And     they click "ENGLISH"
         Then    they should arrive at a page with text 'Secure authentication in e-Services of EU member states'
         And     the page should not have an error message
         And     they click button "Mobile-ID"
