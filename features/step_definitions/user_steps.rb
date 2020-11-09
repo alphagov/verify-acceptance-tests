@@ -602,7 +602,7 @@ end
 
 And('the page should not have an error message') do
   assert_no_text(/error/i)
-  assert_no_text(/problem/i)
+  assert_no_text(/problem\b/i)
 end
 
 And('they navigate through the eIDAS CEF reference implementation node') do
