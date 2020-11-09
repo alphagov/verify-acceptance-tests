@@ -164,8 +164,8 @@ Given('they select eIDAS scheme {string}') do |scheme|
   click_on('Select ' + scheme)
 end
 
-Given('they click Register') do
-  click_on('Register')
+Given('they click {string}') do |string|
+  click_on(string)
 end
 
 Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_random_pid|
