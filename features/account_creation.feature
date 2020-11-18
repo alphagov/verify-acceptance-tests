@@ -9,8 +9,9 @@ Feature: User account creation
     And this is their first time using Verify
     And they are above the age threshold
     And they have all their documents
-    And they do not have a phone
-    And they continue to register with IDP "Stub Idp Demo One"
+    And they do have a phone
+    And they click on continue
+    And they continue to register with IDP "Stub Idp Demo Two"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
@@ -49,8 +50,9 @@ Feature: User account creation
     And this is their first time using Verify
     And they are above the age threshold
     And they have all their documents
-    And they do not have a phone
-    And they continue to register with IDP "Stub Idp Demo One"
+    And they do have a phone
+    And they click on continue
+    And they continue to register with IDP "Stub Idp Demo Two"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
@@ -87,8 +89,9 @@ Feature: User account creation
     And this is their first time using Verify
     And they are above the age threshold
     And they have all their documents
-    And they do not have a phone
-    And they continue to register with IDP "Stub Idp Demo One"
+    And they do have a phone
+    And they click on continue
+    And they continue to register with IDP "Stub Idp Demo Two"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
