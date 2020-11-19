@@ -67,11 +67,10 @@ Feature: User Back button
     Then they should arrive at the Select documents page
 
     And they have all their documents
-    And they do have a phone
-    And they click on continue
-    And they continue to register with IDP "Stub Idp Demo Two"
+    And they do not have a phone
+    And they continue to register with IDP "Stub Idp Demo One"
     And they want to cancel registration
-    Then they should arrive at the "Stub Idp Demo Two" Cancel Registration page
+    Then they should arrive at the "Stub Idp Demo One" Cancel Registration page
 
   @Eidas
   Scenario: User fails to authenticate presses back button and tries again
