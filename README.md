@@ -21,6 +21,11 @@ In order to run a single instance with visible browser use:
 ./pre-commit.sh --no-parallel
 ```
 
+To run your tests locally using Chrome instead of Firefox set the `BROWSER` environment variable to `chrome`:
+```
+BROWSER=chrome ./pre-commit.sh --no-parallel
+```
+
 To run them for a different test environment, export the `TEST_ENV` environment variable with one of the following:
 
   * local
