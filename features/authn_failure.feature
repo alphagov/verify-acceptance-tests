@@ -11,7 +11,8 @@ Feature: User authentication failure
     Then they should arrive at the Select documents page
 
     When they have all their documents
-    And they have a smart phone
+    And they do have a phone
+    And they click on continue
     And they continue to register with IDP "Stub Idp Demo Two"
     When the IDP returns an Authn Failure response
     Then they should arrive at the Failed registration page
