@@ -1,12 +1,11 @@
-FROM ruby:2.6.5 as bundler
+FROM ghcr.io/alphagov/verify/ruby:2.6.6 as bundler
 
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 
 RUN bundle install
 
-
-FROM ruby:2.6.5-slim
+FROM ghcr.io/alphagov/verify/ruby:2.6.6
 
 RUN apt-get update && apt-get install --no-install-recommends -y libxml2 libxslt1.1
 
