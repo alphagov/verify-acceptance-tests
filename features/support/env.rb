@@ -17,16 +17,16 @@ if ENV.key?('SELENIUM_HUB_URL')
   Capybara.run_server = false
 
   Capybara.register_driver :remote_browser do |app|
-		Capybara::Selenium::Driver.new(
-			app,
-			:browser => :remote,
-			url: selenium_hub_url,
-			desired_capabilities: caps
-		)
-	end
+    Capybara::Selenium::Driver.new(
+        app,
+        :browser => :remote,
+        url: selenium_hub_url,
+        desired_capabilities: caps
+    )
+  end
 
-	Capybara.default_driver    = :remote_browser
-	Capybara.javascript_driver = :remote_browser
+  Capybara.default_driver    = :remote_browser
+  Capybara.javascript_driver = :remote_browser
 elsif ENV['TEST_ENV'] == 'local' || ENV['SHOW_BROWSER']
 
   if ENV['BROWSER'] == 'chrome'
