@@ -2,7 +2,7 @@ Feature: eIDAS Connector Node Smoke Test - Luxembourg - Integration
 
     This tests the connection of the UK Connector Node to the Luxembourg Proxy Node
 
-    @ignore
+    @Eidas
     Scenario: Send a request to sign in with a Luxembourg identity
         Given   the user is at Test RP
         And     they start an eIDAS journey

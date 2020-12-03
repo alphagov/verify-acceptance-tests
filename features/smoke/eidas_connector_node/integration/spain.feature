@@ -2,7 +2,7 @@ Feature: eIDAS Connector Node Smoke Test - Spain - Integration
 
     This tests the connection of the UK Connector Node to the Spanish Proxy Node
 
-    @ignore
+    @Eidas
     Scenario: Send a request to sign in with an Spanish identity
         Given   the user is at Test RP
         And     they start an eIDAS journey

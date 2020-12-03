@@ -2,7 +2,7 @@ Feature: eIDAS Connector Node Smoke Test - Belgium - Integration
 
     This tests the connection of the UK Connector Node to the Belgian Proxy Node
 
-    @ignore
+    @Eidas
     Scenario: Send a request to sign in with a Belgian identity
         Given   the user is at Test RP
         And     they start an eIDAS journey
