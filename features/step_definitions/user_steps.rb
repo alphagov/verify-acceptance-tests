@@ -94,7 +94,6 @@ end
 
 Given('they start a sign in journey') do
   click_on('Start')
-  click_on('Use GOV.UK Verify') if see_journey_picker?
   choose('start_form_selection_false', allow_label_click: true)
   click_on('Continue')
 end
@@ -105,7 +104,6 @@ Given('they start a sign in journey but their session times out') do
 end
 
 Given('this is their first time using Verify') do
-  click_on('Use GOV.UK Verify') if see_journey_picker?
   choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
   click_link('Continue')
