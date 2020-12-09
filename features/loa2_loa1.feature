@@ -6,7 +6,6 @@ Feature: User loa2 loa1
     Given the user is at Test RP
     And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
     And they start a journey
-    And they choose to use Verify
     And they choose an loa1 registration journey
     And they register for an LOA1 profile with IDP "Stub Idp Demo One"
     When they submit loa1 user details:
@@ -27,7 +26,6 @@ Feature: User loa2 loa1
     And we set the RP name to "loa2-loa1-test-rp" and eidas is enabled
     And we do not want to match the user
     And they start a journey
-    And they choose to use Verify
     And they choose an loa1 registration journey
     And they continue to register with IDP "Stub Idp Demo One"
     And they submit user details:

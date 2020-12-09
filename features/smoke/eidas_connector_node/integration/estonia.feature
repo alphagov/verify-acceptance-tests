@@ -2,7 +2,7 @@ Feature: eIDAS Connector Node Smoke Test - Estonia - Integration
 
     This tests the connection of the UK Connector Node to the Estonian Proxy Node
 
-    @ignore
+    @Eidas
     Scenario: Send a request to sign in with an Estonian identity
         Given   the user is at Test RP
         And     they start an eIDAS journey

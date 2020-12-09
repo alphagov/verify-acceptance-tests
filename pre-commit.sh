@@ -13,10 +13,10 @@ if [[ ! -z $1 ]]
 then
   bundle --quiet
   mkdir -p testreport
-  SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec cucumber $* --strict --tags 'not @ignore'
+  SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec cucumber $* --strict --tags 'not (@Eidas or @staging-only)'
   exit $?
 fi
 
 bundle --quiet
 mkdir -p testreport
-SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec parallel_cucumber features/ -n ${INSTANCES:-3} -o "--strict --tags 'not @ignore'"
+SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec parallel_cucumber features/ -n ${INSTANCES:-3} -o "--strict --tags 'not (@Eidas or @staging-only)'"

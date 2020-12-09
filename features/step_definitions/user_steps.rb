@@ -9,10 +9,6 @@ def env(key)
   ENVIRONMENTS.dig(TEST_ENV, key)
 end
 
-def see_journey_picker?
-  @see_journey_picker
-end
-
 def page_name_to_url_mapping(page_name)
   case page_name
   when 'Verify start' then
@@ -53,12 +49,10 @@ end
 
 Given('the user is at Test RP') do
   visit(env('test-rp'))
-  @see_journey_picker = true
 end
 
 Given('the user is at {string}') do |url|
   visit(url)
-  @see_journey_picker = true
 end
 
 Given('we do not want to match the user') do
@@ -71,12 +65,10 @@ end
 
 Given('we set the RP name to {string}') do |name|
   fill_in('rp-name', with: name)
-  @see_journey_picker = false
 end
 
 Given('we set the RP name to {string} and eidas is enabled') do |name|
   fill_in('rp-name', with: name)
-  @see_journey_picker = true
 end
 
 Given('they select journey hint {string}') do |hint|
@@ -94,7 +86,6 @@ end
 
 Given('they start a sign in journey') do
   click_on('Start')
-  click_on('Use GOV.UK Verify') if see_journey_picker?
   choose('start_form_selection_false', allow_label_click: true)
   click_on('Continue')
 end
@@ -105,7 +96,6 @@ Given('they start a sign in journey but their session times out') do
 end
 
 Given('this is their first time using Verify') do
-  click_on('Use GOV.UK Verify') if see_journey_picker?
   choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
   click_link('Continue')
