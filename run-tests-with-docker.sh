@@ -10,6 +10,7 @@ sleep $((2+NODES))
 docker-compose run \
                --name verify-tests \
                -e TEST_ENV="${TEST_ENV:-"staging"}" \
+               -e RUNNING_IN_DOCKER=true \
                verify-tests -n $NODES -o "--strict -f pretty -f junit -o testreport/ --tags 'not @Eidas' $*"
 exit_status=$?
 docker cp "$(docker ps -a -q -f name='verify-tests')":/testreport .

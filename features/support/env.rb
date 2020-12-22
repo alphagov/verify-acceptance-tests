@@ -11,24 +11,14 @@ show_browser = ENV['SHOW_BROWSER'] == 'true'
 
 ### Driver config ###
 
-if ENV.key?('SELENIUM_HUB_URL')
-  selenium_hub_url    = "#{ENV.fetch('SELENIUM_HUB_URL')}/wd/hub"
-  caps                = Selenium::WebDriver::Remote::Capabilities.firefox
-  Capybara.run_server = false
-
-  Capybara.register_driver :remote_browser do |app|
-    Capybara::Selenium::Driver.new(
-        app,
-        :browser => :remote,
-        url: selenium_hub_url,
-        desired_capabilities: caps
-    )
+if ENV['RUNNING_IN_DOCKER']
+  selenium_hub_url = 'http://selenium-hub:4444/wd/hub'
+  Capybara.register_driver :selenium_remote_firefox do |app|
+    Capybara::Selenium::Driver.new(app, browser: :remote, url: selenium_hub_url, desired_capabilities: :firefox)
   end
 
-  Capybara.default_driver    = :remote_browser
-  Capybara.javascript_driver = :remote_browser
-elsif ENV['TEST_ENV'] == 'local' || ENV['SHOW_BROWSER']
-
+  Capybara.javascript_driver = :selenium_remote_firefox
+else
   if ENV['BROWSER'] == 'chrome'
     browser = :chrome
     options = ::Selenium::WebDriver::Chrome::Options.new
@@ -43,14 +33,6 @@ elsif ENV['TEST_ENV'] == 'local' || ENV['SHOW_BROWSER']
   end
 
   Capybara.javascript_driver = :driver
-
-else
-  selenium_hub_url = 'http://selenium-hub:4444/wd/hub'
-  Capybara.register_driver :selenium_remote_firefox do |app|
-    Capybara::Selenium::Driver.new(app, browser: :remote, url: selenium_hub_url, desired_capabilities: :firefox)
-  end
-
-  Capybara.javascript_driver = :selenium_remote_firefox
 end
 
 Capybara.default_driver = Capybara.javascript_driver
