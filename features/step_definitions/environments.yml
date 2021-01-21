@@ -1,6 +1,7 @@
 local:
   frontend: http://localhost:50300
   test-rp: http://localhost:50130/test-rp
+  test-rp-entity-id: http://www.test-rp.gov.uk/SAML2/MD
   idps:
     Stub Country: http://localhost:50140/eidas/stub-country/
     Stub Idp Demo One: http://localhost:50140/stub-idp-demo-one/
@@ -10,6 +11,7 @@ local:
 docker-local:
   frontend: http://frontend
   test-rp: http://test-rp/test-rp
+  test-rp-entity-id: http://www.test-rp.gov.uk/SAML2/MD
   idps:
     Stub Country: http://stub-idp/eidas/stub-country/
     Stub Idp Demo One: http://stub-idp/stub-idp-demo-one/
@@ -19,6 +21,7 @@ docker-local:
 staging:
   frontend: https://www.staging.signin.service.gov.uk
   test-rp: https://test-rp-staging.cloudapps.digital/test-rp
+  test-rp-entity-id: http://www.staging.test-rp.gov.uk/SAML2/MD
   idps:
     Stub Country: https://stub-idp-staging.cloudapps.digital/eidas/stub-country/
     Stub Idp Demo One: https://stub-idp-staging.cloudapps.digital/stub-idp-demo-one/
@@ -28,6 +31,7 @@ staging:
 integration:
   frontend: https://www.integration.signin.service.gov.uk
   test-rp: https://test-rp-integration.cloudapps.digital/test-rp
+  test-rp-entity-id: http://www.integration.test-rp.gov.uk/SAML2/MD
   idps:
     Stub Idp Demo Two: https://stub-idp-integration.cloudapps.digital/stub-idp-demo-two/
 

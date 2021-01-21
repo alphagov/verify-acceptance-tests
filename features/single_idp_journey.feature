@@ -4,7 +4,7 @@ Feature: Single IDP journey
 
   Scenario: Single idp registration
     Given the user is at the "Stub Idp Demo One" prompt page
-    When they initiate single IDP journey with serviceID "http://www.test-rp.gov.uk/SAML2/MD" and IDP ID "http://stub_idp.acme.org/stub-idp-demo-one/SSO/POST"
+    When they initiate single IDP journey with test-rp and IDP ID "http://stub_idp.acme.org/stub-idp-demo-one/SSO/POST"
     And they are sent to Test Rp
     And we do not want to match the user
     And they start a journey
