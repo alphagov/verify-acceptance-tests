@@ -539,8 +539,8 @@ Given('the user is at the {string} prompt page') do |idp|
   visit(prompt_page)
 end
 
-Given('they initiate single IDP journey with serviceID {string} and IDP ID {string}') do |serviceId, idpEntityId|
-  fill_in('serviceId', with: serviceId)
+Given('they initiate single IDP journey with test-rp and IDP ID {string}') do |idpEntityId|
+  fill_in('serviceId', with: env('test-rp-entity-id'))
   fill_in('idpEntityId', with: idpEntityId)
   click_on('Initiate Single IDP journey')
 end
