@@ -1,4 +1,4 @@
-@ignore
+@staging-only
 Feature: Compatibility with old supported MSA versions
   These tests check that the hub works correctly with old supported
   MSA versions.
@@ -13,7 +13,5 @@ Feature: Compatibility with old supported MSA versions
 
   Examples:
     | RP                                                              |
-    | https://test-rp-staging-backcompat-1.cloudapps.digital/test-rp/ |
-    | https://test-rp-staging-backcompat-2.cloudapps.digital/test-rp/ |
-    | https://test-rp-staging-backcompat-3.cloudapps.digital/test-rp/ |
-    | https://test-rp-staging-backcompat-4.cloudapps.digital/test-rp/ |
+    | https://test-rp-staging-backcompat-3.cloudapps.digital/test-rp/ | # Version 4.2.1-901
+    | https://test-rp-staging-backcompat-4.cloudapps.digital/test-rp/ | # Version 5.0.2-5.0.2
