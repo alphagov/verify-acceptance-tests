@@ -11,9 +11,9 @@ end
 
 def page_name_to_url_mapping(page_name)
   case page_name
-  when 'Verify start' then
+  when 'Verify start'
     'start'
-  when 'IDP sign-in' then
+  when 'IDP sign-in'
     'sign-in'
   when 'country picker'
     'choose-a-country'
@@ -24,9 +24,9 @@ end
 
 def page_heading_text(page)
   case page
-  when 'start' then
+  when 'start'
     'Sign in with GOV.UK Verify'
-  when 'sign-in' then
+  when 'sign-in'
     'Who do you have an identity account with?'
   when 'choose-a-country'
     'Use a digital identity from another European country'
@@ -151,9 +151,7 @@ Given('they click {string}') do |string|
 end
 
 Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_random_pid|
-  if user_string == "the newly registered user"
-    user_string = @username
-  end
+  user_string = @username if user_string == 'the newly registered user'
 
   log_in_as(user_string)
   page.execute_script('document.getElementById("randomPid").value = "true"') if with_random_pid
@@ -396,7 +394,7 @@ Then('they should arrive at the Sign in page') do
 end
 
 Then('they should arrive at the Failed registration page') do
-  assert_text('could not verify your identity')
+  assert_text("#{@idp} was unable to verify your identity")
 end
 
 Then('they should arrive at the Failed sign in page') do
