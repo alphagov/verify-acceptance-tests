@@ -1,3 +1,4 @@
+@staging-only
 Feature: Compatibility with old supported MSA versions
   These tests check that the hub works correctly with old supported
   MSA versions.
