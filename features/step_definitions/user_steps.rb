@@ -15,8 +15,6 @@ def page_name_to_url_mapping(page_name)
     'start'
   when 'IDP sign-in'
     'sign-in'
-  when 'country picker'
-    'choose-a-country'
   when 'prove identity'
     'prove-identity'
   end
@@ -28,8 +26,6 @@ def page_heading_text(page)
     'Sign in with GOV.UK Verify'
   when 'sign-in'
     'Who do you have an identity account with?'
-  when 'choose-a-country'
-    'Use a digital identity from another European country'
   when 'prove-identity'
     'Prove your identity to continue'
   end
@@ -64,10 +60,6 @@ Given('we want to fail account creation') do
 end
 
 Given('we set the RP name to {string}') do |name|
-  fill_in('rp-name', with: name)
-end
-
-Given('we set the RP name to {string} and eidas is enabled') do |name|
   fill_in('rp-name', with: name)
 end
 
@@ -129,21 +121,8 @@ And('they are below the age threshold') do
   click_on('Continue')
 end
 
-Given('they start an eIDAS journey') do
-  click_on('Start')
-  click_on('Select your European digital identity')
-end
-
 When('they choose to use Verify') do
   click_on('Use GOV.UK Verify')
-end
-
-When('they choose to use a European identity scheme') do
-  click_on('Select your European digital identity')
-end
-
-Given('they select eIDAS scheme {string}') do |scheme|
-  click_on('Select ' + scheme)
 end
 
 Given('they click {string}') do |string|
@@ -301,17 +280,6 @@ Given('they click continue on the confirmation page') do
   click_on('Continue')
 end
 
-Given('they enter eIDAS user details:') do |details|
-  details.rows_hash.each do |input, value|
-    fill_in(input, with: value)
-  end
-
-  fill_in('username', with: SecureRandom.hex)
-  fill_in('password', with: 'bar')
-  click_on('Register')
-  click_on('I Agree')
-end
-
 Then('they should be at IDP {string}') do |idp|
   idp_url = env('idps').fetch(idp)
   page = URI.join(idp_url, 'login')
@@ -357,12 +325,6 @@ Then('they should arrive at the Start page') do
   assert_text('Sign in with GOV.UK Verify')
 end
 
-Then('they should arrive at the country picker page') do
-  assert_text('Use a digital identity from another European country')
-  assert_text('You can use a digital identity from another European country to access services on GOV.UK.')
-  assert_current_path('/choose-a-country')
-end
-
 Then('they arrive at the IDP sign-in page') do
   assert_text('Who do you have an identity account with?')
 end
@@ -399,17 +361,6 @@ end
 
 Then('they should arrive at the Failed sign in page') do
   assert_text('You may have selected the wrong company')
-end
-
-Then('they should arrive at the Failed country sign in page') do
-  assert_text('Your identity scheme in Stub Country was unable to confirm your identity')
-  assert_text('There are other ways you can access TestRP.')
-  assert_current_path('/failed-country-sign-in')
-end
-
-Then('they should arrive at the eIDAS scheme unavailable error page') do
-  assert_current_path('/redirect-to-country')
-  assert_text(/Your identity scheme in .* is currently unavailable/)
 end
 
 Then('our Consent page should show "Level of assurance" = {string}') do |assurance_level|
@@ -574,11 +525,6 @@ Given('the user visits a UK Government service') do
   visit('https://www.gov.uk/personal-tax-account/sign-in/prove-identity')
 end
 
-And('they choose to sign in with a digital identity from another European country') do
-  find('label', text: 'Sign in with a digital identity from another European country').click
-  click_button('Continue')
-end
-
 And('they select {string} scheme') do |scheme|
   click_button("Select #{scheme}")
 end
@@ -590,11 +536,4 @@ end
 And('the page should not have an error message') do
   assert_no_text(/error/i)
   assert_no_text(/problem\b/i)
-end
-
-And('they navigate through the eIDAS CEF reference implementation node') do
-  assert_text('YOUR BASIC INFORMATION')
-  click_button('Next')
-  assert_text('YOUR ADDITIONAL INFORMATION')
-  click_button('Next')
 end
