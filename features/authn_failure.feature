@@ -33,43 +33,6 @@ Feature: User authentication failure
     When they choose to start again with another IDP
     Then they should arrive at the Start page
 
-
-  @Eidas
-  Scenario: Country returns AuthFailure on sign-in and user retries
-    Given the user is at Test RP
-    When they start an eIDAS journey
-    And they select eIDAS scheme "Stub IDP Demo"
-    Then they should be at IDP "Stub Country"
-    When they fail sign in with IDP
-    Then they should arrive at the Failed country sign in page
-    When they click on link "Other ways to prove your identity online"
-    Then they should arrive at the prove identity page
-    And they choose to use a European identity scheme
-    Then they should arrive at the country picker page
-    And they select eIDAS scheme "Stub IDP Demo"
-    Then they should be at IDP "Stub Country"
-    And they login as "stub-country"
-    Then they should be successfully verified
-
-
-  @Eidas
-  Scenario: Country returns AuthFailure on sign-in and user retries with Verify
-    Given the user is at Test RP
-    When they start an eIDAS journey
-    And they select eIDAS scheme "Stub IDP Demo"
-    Then they should be at IDP "Stub Country"
-    When they fail sign in with IDP
-    Then they should arrive at the Failed country sign in page
-    When they click on link "Other ways to prove your identity online"
-    Then they should arrive at the prove identity page
-    And they choose to use Verify
-    Then they should arrive at the Start page
-    And they select sign in option
-    And they select IDP "Stub Idp Demo One"
-    And they login as "stub-idp-demo-one"
-    Then they should be successfully verified
-
-
   Scenario: IDP returns authn failure requester error when user Signs in
     Given the user is at Test RP
     When they start a sign in journey
