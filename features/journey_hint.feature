@@ -15,9 +15,3 @@ Feature: Journey hint takes user to correct page
     And they start a journey
     Then they should arrive at the Start page
 
-  @Eidas
-  Scenario: Journey hint Sign-in with eIDAS
-    Given the user is at Test RP
-    And they select journey hint "Sign-in with eIDAS"
-    And they start a journey
-    Then they should arrive at the country picker page

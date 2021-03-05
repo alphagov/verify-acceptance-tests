@@ -12,7 +12,7 @@ docker-compose run \
                -e TEST_ENV="${TEST_ENV:-"staging"}" \
                -e RUNNING_IN_DOCKER=true \
                -e CUCUMBER_PUBLISH_QUIET=true \
-               verify-tests -n $NODES -o "--strict -f pretty -f junit -o testreport/ --tags 'not @Eidas' $*"
+               verify-tests -n $NODES -o "--strict -f pretty -f junit -o testreport/ $*"
 exit_status=$?
 docker cp "$(docker ps -a -q -f name='verify-tests')":/testreport .
 docker-compose down 

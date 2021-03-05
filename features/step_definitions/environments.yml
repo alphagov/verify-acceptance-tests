@@ -3,7 +3,6 @@ local:
   test-rp: http://localhost:50130/test-rp
   test-rp-entity-id: http://www.test-rp.gov.uk/SAML2/MD
   idps:
-    Stub Country: http://localhost:50140/eidas/stub-country/
     Stub Idp Demo One: http://localhost:50140/stub-idp-demo-one/
     Stub Idp Demo Two: http://localhost:50140/stub-idp-demo-two/
     Stub Idp Disconnected: http://localhost:50140/stub-idp-disconnected/
@@ -13,7 +12,6 @@ docker-local:
   test-rp: http://test-rp/test-rp
   test-rp-entity-id: http://www.test-rp.gov.uk/SAML2/MD
   idps:
-    Stub Country: http://stub-idp/eidas/stub-country/
     Stub Idp Demo One: http://stub-idp/stub-idp-demo-one/
     Stub Idp Demo Two: http://stub-idp/stub-idp-demo-two/
     Stub Idp Disconnected: http://stub-idp/stub-idp-disconnected/
@@ -23,7 +21,6 @@ staging:
   test-rp: https://test-rp-staging.cloudapps.digital/test-rp
   test-rp-entity-id: http://www.staging.test-rp.gov.uk/SAML2/MD
   idps:
-    Stub Country: https://stub-idp-staging.cloudapps.digital/eidas/stub-country/
     Stub Idp Demo One: https://stub-idp-staging.cloudapps.digital/stub-idp-demo-one/
     Stub Idp Demo Two: https://stub-idp-staging.cloudapps.digital/stub-idp-demo-two/
     Stub Idp Disconnected: https://stub-idp-staging.cloudapps.digital/stub-idp-disconnected/
