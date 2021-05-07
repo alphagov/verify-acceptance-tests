@@ -1,11 +1,12 @@
-FROM ghcr.io/alphagov/verify/ruby:2.6.6 as bundler
+ARG base_image=ruby:2.6.6
+FROM ${base_image} as bundler
 
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 
 RUN bundle install
 
-FROM ghcr.io/alphagov/verify/ruby:2.6.6
+FROM ${base_image}
 
 RUN apt-get update && apt-get install --no-install-recommends -y libxml2 libxslt1.1 firefox-esr
 
