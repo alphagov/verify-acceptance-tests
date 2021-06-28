@@ -3,6 +3,9 @@ set -u
 
 : "${NODES:=6}"
 
+docker load -i ruby-2.6.6/image.tar
+docker load -i selenium-hub-4.0.0/image.tar
+docker load -i selenium-node-firefox/image.tar
 docker-compose build verify-tests
 docker-compose up -d --scale firefoxnode=$NODES selenium-hub firefoxnode 
 echo "Waiting $((2+NODES)) seconds for the nodes to join the selenium hub"
