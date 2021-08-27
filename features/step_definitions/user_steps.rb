@@ -71,20 +71,10 @@ Given('they start a journey') do
   click_on('Start')
 end
 
-Given('they select sign in option') do
-  choose('start_form_selection_false', allow_label_click: true)
-  click_on('Continue')
-end
-
 Given('they start a sign in journey') do
   click_on('Start')
   choose('start_form_selection_false', allow_label_click: true)
   click_on('Continue')
-end
-
-Given('they start a sign in journey but their session times out') do
-  step('they start a sign in journey')
-  Capybara.reset_sessions!
 end
 
 Given('this is their first time using Verify') do
@@ -135,10 +125,6 @@ Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_rando
   log_in_as(user_string)
   page.execute_script('document.getElementById("randomPid").value = "true"') if with_random_pid
   click_on('I Agree')
-end
-
-And('they choose unsigned assertions') do
-  uncheck("assertionOptions_signAssertions")
 end
 
 Given('they submit cycle 3 {string}') do |string|
@@ -266,12 +252,6 @@ Given /they submit (loa1 |)user details:$/ do |assurance_level, details|
   click_on('Register')
 end
 
-Given('they provide details:') do |details|
-  details.rows_hash.each do |input, value|
-    fill_in(input, with: value)
-  end
-end
-
 Given('they give their consent') do
   click_on('I Agree')
 end
@@ -343,10 +323,6 @@ Then('they arrive at the about page') do
   assert_text('GOV.UK Verify is a secure service built to fight the growing problem of online identity theft.')
 end
 
-Then('they logout') do
-  click_on('Logout')
-end
-
 Then('they should arrive at the Select documents page') do
   assert_text('Which of these do you have available right now?')
 end
@@ -368,40 +344,9 @@ Then('our Consent page should show "Level of assurance" = {string}') do |assuran
   assert_text("#{assurance_level}")
 end
 
-Then('they are shown the cookies missing page') do
-  assert_text('GOV.UK Verify can only be accessed from a government service.')
-  assert_text("If you can’t access GOV.UK Verify from a service, enable your cookies.")
-end
-
-When('they go to the feedback form') do
-  page.find(:xpath, "//a[contains(text(),'feedback form')]").click
-  page.find(:xpath, "//a[contains(text(),'Give feedback on GOV.UK Verify')]").click
-end
-
-And('they enter some feedback and submit the form') do
-  fill_in('feedback_form_what', with: 'Acceptance testing')
-  fill_in('feedback_form_details', with: 'Feedback form testing')
-  choose('feedback_form_reply_true', allow_label_click: true)
-  fill_in('feedback_form_name', with: 'Acc Test')
-  fill_in('feedback_form_email', with: 'acctest@example.com')
-  click_on('Send message')
-end
-
-Then('they receive confirmation that feedback was sent') do
-  assert_text('Thank you for your feedback')
-end
-
-And('they go back to the start page') do
-  visit(URI.join(env('frontend'), 'start'))
-end
-
 When('they click button {string}') do |value|
-  if @idp
-    if value == ('Sign in with ' + @idp)
-      page.find(:xpath, "//button[contains(text(), '#{value}')]").click
-    else
-      page.find(:xpath, "//input[@value= '#{value}']").click
-    end
+  if @idp && value == ('Sign in with ' + @idp)
+    page.find(:xpath, "//button[contains(text(), '#{value}')]").click
   else
     click_button(value)
   end
@@ -409,12 +354,6 @@ end
 
 When('they click on link {string}') do |value|
   click_on(value)
-end
-
-Given('they login as {string} with {string} signing algorithm') do |username, algorithm|
-  log_in_as(username)
-  page.execute_script("document.getElementById('signingAlgorithm').value = '#{algorithm}';")
-  click_on('I Agree')
 end
 
 When('they choose to pause their journey') do
@@ -436,12 +375,6 @@ Then('they will be at the stateful paused page for {string}') do |idp|
   page.assert_selector('a', id: 'next-button', text: "Continue verifying with #{idp}", visible: true)
 end
 
-Then('they will be at the stateless paused page') do
-  assert_current_path('/paused')
-  assert_text("The certified company has saved your information")
-  page.assert_selector('a', text: "test GOV.UK Verify user journeys", visible: true)
-end
-
 Then('they will be at the resume page for {string}') do |idp|
   assert_current_path('/resume-registration')
   assert_text("Continue verifying with #{idp}")
@@ -458,10 +391,6 @@ Given('they start a registration journey with IDP {string}') do |idp|
   step("they continue to register with IDP '#{idp}'")
 end
 
-Given('they are on a different device') do
-  Capybara.reset_sessions!
-end
-
 When('they visit the paused page') do
   visit(env('frontend') + "/paused")
 end
@@ -471,15 +400,7 @@ Then('they will be at the Test RP start page') do
 end
 
 When('frontend session times out') do
-  step('clear "_verify-frontend_session" cookie')
-end
-
-When('clear {string} cookie') do |cookie_name|
-  page.driver.browser.manage.delete_cookie(cookie_name)
-end
-
-When('they click a resume link in an e-mail from IDP with link for simpleId {string}') do |idp_simple_id|
-  visit(env('frontend') + "/paused/#{idp_simple_id}")
+  page.driver.browser.manage.delete_cookie('_verify-frontend_session')
 end
 
 Given('the user is at the {string} prompt page') do |idp|
@@ -506,10 +427,6 @@ Given('they continue to the idp') do
   click_on('continue-to-idp-button')
 end
 
-Given('the IDP fails to authenticate user') do
-  click_on('Authn Failure')
-end
-
 Then('they should see the disconnected IDP hint for {string}') do |idp|
   assert_text("This is tailored text for when #{idp} is disconnected")
 end
@@ -519,21 +436,4 @@ And('they finish registering') do
   step('they click continue on the confirmation page')
   step('they should be successfully verified')
   click_on('Logout')
-end
-
-Given('the user visits a UK Government service') do
-  visit('https://www.gov.uk/personal-tax-account/sign-in/prove-identity')
-end
-
-And('they select {string} scheme') do |scheme|
-  click_button("Select #{scheme}")
-end
-
-Then('they should arrive at a page with text {string}') do |content|
-  assert_text(content)
-end
-
-And('the page should not have an error message') do
-  assert_no_text(/error/i)
-  assert_no_text(/problem\b/i)
 end

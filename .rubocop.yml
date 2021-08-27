@@ -3,7 +3,13 @@ Style/FrozenStringLiteralComment:
     - 'features/step_definitions/user_steps.rb'
     - 'features/support/env.rb'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 130
   Exclude:
     - 'features/support/env.rb'
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 40
