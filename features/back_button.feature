@@ -32,7 +32,7 @@ Feature: User Back button
 
     And they have all their documents
     And they do have a phone
-    And they click on continue
+    And they click Continue
     And they continue to register with IDP "Stub Idp Demo Two"
     And they want to cancel registration
     Then they should arrive at the "Stub Idp Demo Two" Cancel Registration page

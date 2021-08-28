@@ -9,7 +9,7 @@ Feature: User registers, returns to confirm identity and signs in successfully
     And they are above the age threshold
     And they have all their documents
     And they do have a phone
-    And they click on continue
+    And they click Continue
     And they continue to register with IDP "Stub Idp Demo Two"
     And they submit user details:
           | firstname       | Jane       |
@@ -19,9 +19,9 @@ Feature: User registers, returns to confirm identity and signs in successfully
           | addressTown     | Marlbury   |
           | addressPostCode | ABC 123    |
           | dateOfBirth     | 1987-03-03 |
-    Then our Consent page should show "Level of assurance" = "LEVEL_2"
+    Then the consent page should show level of assurance "LEVEL_2"
     When they give their consent
-    And they click continue on the confirmation page
+    And they click Continue
     Then they should be successfully verified
     When they click button "Confirm Identity"
     Then they arrive at the confirm identity page for "Stub Idp Demo Two"

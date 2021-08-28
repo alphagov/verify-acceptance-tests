@@ -59,7 +59,7 @@ Given('we want to fail account creation') do
   check('fail-account-creation')
 end
 
-Given('we set the RP name to {string}') do |name|
+Given('RP name is set to {string}') do |name|
   fill_in('rp-name', with: name)
 end
 
@@ -93,7 +93,7 @@ Given('they choose a registration journey') do
   click_on('Continue')
 end
 
-Given('they choose an loa1 registration journey') do
+Given('they choose an LOA1 registration journey') do
   choose('start_form_selection_true', allow_label_click: true)
   click_on('Continue')
   click_link('Continue')
@@ -113,10 +113,6 @@ end
 
 When('they choose to use Verify') do
   click_on('Use GOV.UK Verify')
-end
-
-Given('they click {string}') do |string|
-  click_on(string)
 end
 
 Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_random_pid|
@@ -172,7 +168,7 @@ Given('they continue with {string}') do |idp|
   @idp = "#{idp}"
 end
 
-Given('they click on continue') do
+Given('they click Continue') do
   click_on("Continue")
 end
 
@@ -256,10 +252,6 @@ Given('they give their consent') do
   click_on('I Agree')
 end
 
-Given('they click continue on the confirmation page') do
-  click_on('Continue')
-end
-
 Then('they should be at IDP {string}') do |idp|
   idp_url = env('idps').fetch(idp)
   page = URI.join(idp_url, 'login')
@@ -339,9 +331,9 @@ Then('they should arrive at the Failed sign in page') do
   assert_text('You may have selected the wrong company')
 end
 
-Then('our Consent page should show "Level of assurance" = {string}') do |assurance_level|
+Then('the consent page should show level of assurance {string}') do |assurance_level|
   assert_text("You've successfully authenticated with #{@idp}")
-  assert_text("#{assurance_level}")
+  assert_text(assurance_level)
 end
 
 When('they click button {string}') do |value|
@@ -387,7 +379,7 @@ Given('they start a registration journey with IDP {string}') do |idp|
   step('they are above the age threshold')
   step('they have all their documents')
   step('they do have a phone')
-  step('they click on continue')
+  step('they click Continue')
   step("they continue to register with IDP '#{idp}'")
 end
 
@@ -419,11 +411,11 @@ Then('they are sent to Test Rp') do
   assert_current_path('/test-rp')
 end
 
-Then('they land on the continue to idp page') do
+Then('they land on the continue to IDP page') do
   assert_current_path('/continue-to-your-idp')
 end
 
-Given('they continue to the idp') do
+Given('they continue to the IDP') do
   click_on('continue-to-idp-button')
 end
 
@@ -433,7 +425,7 @@ end
 
 And('they finish registering') do
   step('they give their consent')
-  step('they click continue on the confirmation page')
+  step('they click Continue')
   step('they should be successfully verified')
   click_on('Logout')
 end

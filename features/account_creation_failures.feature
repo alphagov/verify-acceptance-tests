@@ -4,7 +4,7 @@ Feature: User account creation failures
 
   Scenario: Failed user account creation
     Given the user is at Test RP
-    And we set the RP name to "test-rp-noc3"
+    And RP name is set to "test-rp-noc3"
     And we do not want to match the user
     And we want to fail account creation
     And they start a sign in journey

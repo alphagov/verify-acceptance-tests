@@ -33,7 +33,7 @@ Feature: User simple flows - sign in
 
   Scenario: Sign in without cycle 3 and unsigned by hub
     Given the user is at Test RP
-    And we set the RP name to "test-rp-not-signed-by-hub"
+    And RP name is set to "test-rp-not-signed-by-hub"
     And we do not want to match the user
     And they start a sign in journey
     And they select IDP "Stub Idp Demo One"
@@ -42,4 +42,3 @@ Feature: User simple flows - sign in
       | firstname   | Jack       |
       | surname     | Bauer      |
       | dateofbirth | 1984-02-29 |
-
