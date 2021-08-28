@@ -35,8 +35,8 @@ def text_for_page(page)
     'GOV.UK Verify is a secure service built to fight the growing problem of online identity theft.'
   when 'user account creation error'
     'Sorry, there is a problem with the service'
-  when 'select documents'
-    'Which of these do you have available right now?'
+  when 'about documents'
+    'Before you start'
   when 'IDP registration picker'
     'Pick a certified company to verify you'
   when 'IDP sign-in picker'
@@ -130,16 +130,6 @@ And('they are above the age threshold') do
   click_on('Continue')
 end
 
-And('they are below the age threshold') do
-  choose('will_it_work_for_me_form_above_age_threshold_false', allow_label_click: true)
-  choose('will_it_work_for_me_form_resident_last_12_months_true', allow_label_click: true)
-  click_on('Continue')
-end
-
-When('they choose to use Verify') do
-  click_on('Use GOV.UK Verify')
-end
-
 Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_random_pid|
   user_string = @username if user_string == 'the newly registered user'
 
@@ -151,36 +141,6 @@ end
 Given('they submit cycle 3 {string}') do |string|
   fill_in('cycle_three_attribute[cycle_three_data]', with: string)
   click_on('Continue')
-end
-
-Given('they have all their documents') do
-  check "A valid driving licence, full or provisional, with your photo on it", allow_label_click: true
-  check "A valid passport", allow_label_click: true
-end
-
-Given('they do not have their documents') do
-  uncheck "A valid driving licence, full or provisional, with your photo on it", allow_label_click: true
-  uncheck "A valid passport", allow_label_click: true
-  click_on('Continue')
-end
-
-Given('they do not have other identity documents') do
-  choose('other_identity_documents_form_non_uk_id_document_false', allow_label_click: true)
-  click_on('Continue')
-end
-
-Given('they have a smart phone') do
-  choose('select_phone_form_mobile_phone_true', allow_label_click: true)
-  choose('select_phone_form_smart_phone_true', allow_label_click: true)
-  click_on('Continue')
-end
-
-Given('they do not have a phone') do
-  uncheck "A phone or tablet that can download an app", allow_label_click: true
-end
-
-Given('they do have a phone') do
-  check "A phone or tablet that can download an app", allow_label_click: true
 end
 
 Given('they continue to register with IDP {string}') do |idp|
@@ -222,16 +182,14 @@ Given('they fail sign in with IDP') do
   click_on('Authn Failure')
 end
 
-Given('they choose try to verify') do
-  click_link('verify-identity-online')
-end
-
-Given('they select the link find another company to verify you') do
-  click_link('Find another company to verify you')
-end
-
 Given('they choose to start again with another IDP') do
   click_on('startAgain')
+end
+
+When('they choose to try another company') do
+  link = first('a', text: 'Pick another company.', count: nil)
+  link ||= find('a', text: 'Try another certified company')
+  link.click
 end
 
 Given /^they go back to the (.+) page$/ do |page_name|
@@ -356,8 +314,6 @@ Given('they start a registration journey with IDP {string}') do |idp|
   step('they start a journey')
   step('this is their first time using Verify')
   step('they are above the age threshold')
-  step('they have all their documents')
-  step('they do have a phone')
   step('they click Continue')
   step("they continue to register with IDP '#{idp}'")
 end
