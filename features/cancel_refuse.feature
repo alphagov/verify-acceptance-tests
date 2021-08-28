@@ -7,4 +7,4 @@ Feature: User cancel or refuse
     When they start a sign in journey
     And they select IDP "Stub Idp Demo One"
     And they want to cancel sign in
-    Then they should arrive at the Start page
+    Then they should arrive at the start page

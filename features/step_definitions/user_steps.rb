@@ -9,25 +9,50 @@ def env(key)
   ENVIRONMENTS.dig(TEST_ENV, key)
 end
 
-def page_name_to_url_mapping(page_name)
-  case page_name
-  when 'Verify start'
-    'start'
-  when 'IDP sign-in'
-    'sign-in'
-  when 'prove identity'
-    'prove-identity'
-  end
+def url_for_page(page_name)
+  url =
+    case page_name
+    when 'Test RP'
+      env('test-rp')
+    when 'start'
+      'start'
+    when 'IDP sign-in picker'
+      'sign-in'
+    when 'user account creation error'
+      'response-processing'
+    end
+
+  return unless url
+
+  url.start_with?('http') ? url : "/#{url}"
 end
 
-def page_heading_text(page)
+def text_for_page(page)
   case page
   when 'start'
     'Sign in with GOV.UK Verify'
-  when 'sign-in'
+  when 'about'
+    'GOV.UK Verify is a secure service built to fight the growing problem of online identity theft.'
+  when 'user account creation error'
+    'Sorry, there is a problem with the service'
+  when 'select documents'
+    'Which of these do you have available right now?'
+  when 'IDP registration picker'
+    'Pick a certified company to verify you'
+  when 'IDP sign-in picker'
     'Who do you have an identity account with?'
-  when 'prove-identity'
-    'Prove your identity to continue'
+  when 'confirm identity'
+    "Sign in with #{@idp}"
+  when 'failed registration'
+    "#{@idp} was unable to verify your identity"
+  when 'failed sign-in'
+    'You may have selected the wrong company'
+  when 'cancelled registration'
+    "You cancelled your identity verification with #{@idp}"
+  when 'Test RP'
+    'Test GOV.UK Verify user journeys'
+  else
+    raise ArgumentError("No text defined for page '#{page}'")
   end
 end
 
@@ -163,11 +188,6 @@ Given('they continue to register with IDP {string}') do |idp|
   @idp = "#{idp}"
 end
 
-Given('they continue with {string}') do |idp|
-  click_on("Continue to the #{idp} website")
-  @idp = "#{idp}"
-end
-
 Given('they click Continue') do
   click_on("Continue")
 end
@@ -214,12 +234,11 @@ Given('they choose to start again with another IDP') do
   click_on('startAgain')
 end
 
-Given('they go back to the {string} page') do |page_name|
-  page_mapped_url = page_name_to_url_mapping(page_name)
+Given /^they go back to the (.+) page$/ do |page_name|
+  page_mapped_url = url_for_page(page_name)
   visit(URI.join(env('frontend'), page_mapped_url))
 
-  page_text = page_heading_text(page_mapped_url)
-  assert_text(page_text)
+  assert_text(text_for_page(page_name))
 end
 
 Given('they want to cancel sign in') do
@@ -259,18 +278,17 @@ Then('they should be at IDP {string}') do |idp|
 end
 
 Then('they should be successfully verified') do
-  find('.success-notice')
-  assert_text('Your identity has been confirmed')
-end
-
-Then('they should arrive at the {string} Cancel Registration page') do |idp|
-  assert_text("You cancelled your identity verification with #{idp}")
+  verify_success
 end
 
 Then('they should be successfully verified with level of assurance {string}') do |assurance_level|
+  verify_success(assurance_level)
+end
+
+def verify_success(loa = nil)
   find('.success-notice')
   assert_text('Your identity has been confirmed')
-  assert_text("level of assurance #{assurance_level}")
+  assert_text("level of assurance #{loa}") if loa
 end
 
 Then('a user should have been created with details:') do |details|
@@ -281,54 +299,15 @@ Then('a user should have been created with details:') do |details|
   end
 end
 
-Then('they should arrive at the Test RP start page with error notice') do
-  page = env('test-rp')
-  assert_current_path(page, ignore_query: true)
-  assert_text('Test GOV.UK Verify user journeys')
+Then /^they should arrive at the (.+) page$/ do |page|
+  assert_text(text_for_page(page))
+
+  url = url_for_page(page)
+  assert_current_path(url, ignore_query: true) if url
+end
+
+And('the Test RP page should have a sign-in error notice') do
   assert_text('There has been a problem signing you in.')
-end
-
-Then('should arrive at the user account creation error page') do
-  assert_text('Sorry, there is a problem with the service')
-  assert_current_path('/response-processing')
-end
-
-Then('they should arrive at the Start page') do
-  assert_text('Sign in with GOV.UK Verify')
-end
-
-Then('they arrive at the IDP sign-in page') do
-  assert_text('Who do you have an identity account with?')
-end
-
-Then('they arrive at the confirm identity page for {string}') do |idp|
-  assert_text('Sign in with ' + idp)
-end
-
-Then('they should arrive at the prove identity page') do
-  assert_text('Prove your identity to continue')
-  assert_text('Choose how you want to prove your identity so you can test GOV.UK Verify user journeys.')
-  assert_current_path('/prove-identity')
-end
-
-Then('they arrive at the about page') do
-  assert_text('GOV.UK Verify is a secure service built to fight the growing problem of online identity theft.')
-end
-
-Then('they should arrive at the Select documents page') do
-  assert_text('Which of these do you have available right now?')
-end
-
-Then('they should arrive at the Sign in page') do
-  assert_text('Who do you have an identity account with?')
-end
-
-Then('they should arrive at the Failed registration page') do
-  assert_text("#{@idp} was unable to verify your identity")
-end
-
-Then('they should arrive at the Failed sign in page') do
-  assert_text('You may have selected the wrong company')
 end
 
 Then('the consent page should show level of assurance {string}') do |assurance_level|
@@ -345,7 +324,7 @@ When('they click button {string}') do |value|
 end
 
 When('they click on link {string}') do |value|
-  click_on(value)
+  click_link(value)
 end
 
 When('they choose to pause their journey') do
@@ -387,28 +366,24 @@ When('they visit the paused page') do
   visit(env('frontend') + "/paused")
 end
 
-Then('they will be at the Test RP start page') do
-  assert_current_path(env('test-rp'))
-end
-
 When('frontend session times out') do
   page.driver.browser.manage.delete_cookie('_verify-frontend_session')
 end
 
-Given('the user is at the {string} prompt page') do |idp|
+Given('the user is at the IDP prompt page for {string}') do |idp|
   idp_url = env('idps').fetch(idp)
   prompt_page = URI.join(idp_url, 'start-prompt')
   visit(prompt_page)
 end
 
-Given('they initiate single IDP journey with test-rp and IDP ID {string}') do |idpEntityId|
+Given('they initiate single IDP journey with Test RP and IDP ID {string}') do |idp_entity_id|
   fill_in('serviceId', with: env('test-rp-entity-id'))
-  fill_in('idpEntityId', with: idpEntityId)
+  fill_in('idpEntityId', with: idp_entity_id)
   click_on('Initiate Single IDP journey')
 end
 
-Then('they are sent to Test Rp') do
-  assert_current_path('/test-rp')
+Then('they should arrive at the Test RP') do
+  step('they should arrive at the Test RP page')
 end
 
 Then('they land on the continue to IDP page') do

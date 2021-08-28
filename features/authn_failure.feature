@@ -8,18 +8,17 @@ Feature: User authentication failure
     And this is their first time using Verify
     And they are below the age threshold
     And they choose try to verify
-    Then they should arrive at the Select documents page
+    Then they should arrive at the select documents page
 
     When they have all their documents
     And they do have a phone
     And they click Continue
     And they continue to register with IDP "Stub Idp Demo Two"
     When the IDP returns an Authn Failure response
-    Then they should arrive at the Failed registration page
+    Then they should arrive at the failed registration page
 
 #    When they select the link find another company to verify you
 #    Then they should arrive at the Select documents page
-
 
   Scenario: IDP returns authn failure when user Signs in
     Given the user is at Test RP
@@ -28,10 +27,10 @@ Feature: User authentication failure
     Then they should be at IDP "Stub Idp Demo Two"
 
     When they fail sign in with IDP
-    Then they should arrive at the Failed sign in page
+    Then they should arrive at the failed sign-in page
 
     When they choose to start again with another IDP
-    Then they should arrive at the Start page
+    Then they should arrive at the start page
 
   Scenario: IDP returns authn failure requester error when user Signs in
     Given the user is at Test RP
@@ -40,7 +39,7 @@ Feature: User authentication failure
     Then they should be at IDP "Stub Idp Demo Two"
 
     When the IDP returns a Requester Error response
-    Then they should arrive at the Failed sign in page
+    Then they should arrive at the failed sign-in page
 
     When they choose to start again with another IDP
-    Then they should arrive at the Start page
+    Then they should arrive at the start page

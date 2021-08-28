@@ -24,7 +24,7 @@ Feature: User registers, returns to confirm identity and signs in successfully
     And they click Continue
     Then they should be successfully verified
     When they click button "Confirm Identity"
-    Then they arrive at the confirm identity page for "Stub Idp Demo Two"
+    Then they should arrive at the confirm identity page
     When they click button "Sign in with Stub Idp Demo Two"
     And they login as "the newly registered user"
     Then they should be successfully verified with level of assurance "LEVEL_2"
