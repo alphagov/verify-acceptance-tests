@@ -3,16 +3,16 @@ Feature: Single IDP journey
   This tests single IDP journey.
 
   Scenario: Single idp registration
-    Given the user is at the "Stub Idp Demo One" prompt page
-    When they initiate single IDP journey with test-rp and IDP ID "http://stub_idp.acme.org/stub-idp-demo-one/SSO/POST"
-    And they are sent to Test Rp
+    Given the user is at the IDP prompt page for "Stub Idp Demo One"
+    When they initiate single IDP journey with Test RP and IDP ID "http://stub_idp.acme.org/stub-idp-demo-one/SSO/POST"
+    And they should arrive at the Test RP
     And we do not want to match the user
     And they start a journey
-    And they land on the continue to idp page
-    And they continue to the idp
+    And they land on the continue to IDP page
+    And they continue to the IDP
     Then they should be at IDP "Stub Idp Demo One"
     And they login as "stub-idp-demo-one"
-    And they click continue on the confirmation page
+    And they click Continue
     And they submit cycle 3 "AA123456A"
     Then a user should have been created with details:
       | firstname      | Jack       |

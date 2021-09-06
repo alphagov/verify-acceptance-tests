@@ -7,11 +7,10 @@ Feature: Journey hint takes user to correct page
     Given the user is at Test RP
     And they select journey hint "Registration"
     And they start a journey
-    Then they should arrive at the Start page
+    Then they should arrive at the start page
 
   Scenario: Journey hint Sign-in with Verify
     Given the user is at Test RP
     And they select journey hint "Sign-in with Verify"
     And they start a journey
-    Then they should arrive at the Start page
-
+    Then they should arrive at the start page

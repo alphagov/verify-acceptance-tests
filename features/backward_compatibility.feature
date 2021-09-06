@@ -12,7 +12,7 @@ Feature: Compatibility with old supported MSA versions
     Then they should be successfully verified
 
   Examples:
-    | RP                                                              |
-    | https://test-rp-staging-backcompat-3.cloudapps.digital/test-rp/ | # Version 4.2.1-901
-    | https://test-rp-staging-backcompat-4.cloudapps.digital/test-rp/ | # Version 5.0.2-5.0.2
-    | https://test-rp-staging-backcompat-5.cloudapps.digital/test-rp/ | # Version 5.1.0-5.1.0
+    | RP                                                              | Version               |
+    | https://test-rp-staging-backcompat-3.cloudapps.digital/test-rp/ | # Version 4.2.1-901   |
+    | https://test-rp-staging-backcompat-4.cloudapps.digital/test-rp/ | # Version 5.0.2-5.0.2 |
+    | https://test-rp-staging-backcompat-5.cloudapps.digital/test-rp/ | # Version 5.1.0-5.1.0 |

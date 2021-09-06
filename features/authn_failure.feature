@@ -1,25 +1,68 @@
 Feature: User authentication failure
 
-  This tests authentication failure flows
+  This tests authentication and registration failure flows
 
-  Scenario: IDP returns authn failure when user attempts to register
+  Scenario: IDP returns authn failure on registration attempt with LOA2 and RP is not allowed to continue on fail
     Given the user is at Test RP
     When they start a journey
     And this is their first time using Verify
-    And they are below the age threshold
-    And they choose try to verify
-    Then they should arrive at the Select documents page
+    And they are above the age threshold
+    Then they should arrive at the about documents page
 
-    When they have all their documents
-    And they do have a phone
-    And they click on continue
+    When they click Continue
     And they continue to register with IDP "Stub Idp Demo Two"
     When the IDP returns an Authn Failure response
-    Then they should arrive at the Failed registration page
+    Then they should arrive at the failed registration page
 
-#    When they select the link find another company to verify you
-#    Then they should arrive at the Select documents page
+    When they choose to try another company
+    Then they should arrive at the IDP registration picker page
 
+  Scenario: IDP returns authn failure on registration attempt with LOA1 and RP is not allowed to continue on fail
+    Given the user is at Test RP
+    Given RP name is set to "loa1-test-rp"
+    When they start a journey
+    And this is their first time using Verify
+    Then they should arrive at the IDP registration picker page
+
+    When they continue to register with IDP "Stub Idp Demo Two"
+    Then the IDP returns an Authn Failure response
+    And they should arrive at the failed registration page
+
+    When they choose to try another company
+    Then they should arrive at the IDP registration picker page
+
+  Scenario: IDP returns authn failure on registration attempt with LOA2 and RP is allowed to continue on fail
+    Given the user is at Test RP
+    Given RP name is set to "test-rp-with-continue-on-fail"
+    When they start a journey
+    And this is their first time using Verify
+    And they are above the age threshold
+    Then they should arrive at the about documents page
+
+    When they click Continue
+    And they continue to register with IDP "Stub Idp Demo Two"
+    When the IDP returns an Authn Failure response
+    Then they should arrive at the failed registration page
+
+    When they choose to try another company
+    Then they should arrive at the IDP registration picker page
+
+  Scenario: IDP returns authn failure on registration attempt with LOA2 and user continues to RP
+    Given the user is at Test RP
+    Given RP name is set to "test-rp-with-continue-on-fail"
+    When they start a journey
+    And this is their first time using Verify
+    And they are above the age threshold
+    Then they should arrive at the about documents page
+
+    When they click Continue
+    And they continue to register with IDP "Stub Idp Demo Two"
+    When the IDP returns an Authn Failure response
+    Then they should arrive at the failed registration page
+
+    When they click Continue
+    Then they should arrive at the Test RP
+    Then the Test RP page should have a sign-in error notice
 
   Scenario: IDP returns authn failure when user Signs in
     Given the user is at Test RP
@@ -28,10 +71,10 @@ Feature: User authentication failure
     Then they should be at IDP "Stub Idp Demo Two"
 
     When they fail sign in with IDP
-    Then they should arrive at the Failed sign in page
+    Then they should arrive at the failed sign-in page
 
     When they choose to start again with another IDP
-    Then they should arrive at the Start page
+    Then they should arrive at the start page
 
   Scenario: IDP returns authn failure requester error when user Signs in
     Given the user is at Test RP
@@ -40,7 +83,7 @@ Feature: User authentication failure
     Then they should be at IDP "Stub Idp Demo Two"
 
     When the IDP returns a Requester Error response
-    Then they should arrive at the Failed sign in page
+    Then they should arrive at the failed sign-in page
 
     When they choose to start again with another IDP
-    Then they should arrive at the Start page
+    Then they should arrive at the start page

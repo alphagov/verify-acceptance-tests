@@ -2,21 +2,35 @@
 
 set -e
 
-if [[ "${1:-}" == "--no-parallel" ]]
+PARALLEL=true
+BROWSER=chrome
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -f | --firefox)         BROWSER=firefox
+                                ;;
+        -s | --no-parallel)     PARALLEL=false
+                                ;;
+        -q | --hide-browser)    SHOW_BROWSER=false
+                                ;;
+        * )                     break
+                                ;;
+    esac
+    shift
+done
+
+if [[ $PARALLEL == "false" ]]
 then
     SHOW_BROWSER=${SHOW_BROWSER:-true}
     INSTANCES=1
-    shift
 fi
 
-if [[ ! -z $1 ]]
+if [[ -n $1 ]]
 then
-  bundle --quiet
-  mkdir -p testreport
-  SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec cucumber $* --strict --tags 'not @staging-only'
-  exit $?
+  TESTS_TO_RUN="$*"
 fi
 
 bundle --quiet
 mkdir -p testreport
-SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} bundle exec parallel_cucumber features/ -n ${INSTANCES:-3} -o "--strict --tags 'not @staging-only'"
+SHOW_BROWSER=${SHOW_BROWSER:-false} TEST_ENV=${TEST_ENV:-local} BROWSER=$BROWSER CUCUMBER_PUBLISH_QUIET=true \
+bundle exec parallel_cucumber "${TESTS_TO_RUN:-features/}" -n ${INSTANCES:-3} -o "--strict --tags 'not @staging-only'"
