@@ -31,39 +31,6 @@ Feature: User authentication failure
     When they choose to try another company
     Then they should arrive at the IDP registration picker page
 
-  Scenario: IDP returns authn failure on registration attempt with LOA2 and RP is allowed to continue on fail
-    Given the user is at Test RP
-    Given RP name is set to "test-rp-with-continue-on-fail"
-    When they start a journey
-    And this is their first time using Verify
-    And they are above the age threshold
-    Then they should arrive at the about documents page
-
-    When they click Continue
-    And they continue to register with IDP "Stub Idp Demo Two"
-    When the IDP returns an Authn Failure response
-    Then they should arrive at the failed registration page
-
-    When they choose to try another company
-    Then they should arrive at the IDP registration picker page
-
-  Scenario: IDP returns authn failure on registration attempt with LOA2 and user continues to RP
-    Given the user is at Test RP
-    Given RP name is set to "test-rp-with-continue-on-fail"
-    When they start a journey
-    And this is their first time using Verify
-    And they are above the age threshold
-    Then they should arrive at the about documents page
-
-    When they click Continue
-    And they continue to register with IDP "Stub Idp Demo Two"
-    When the IDP returns an Authn Failure response
-    Then they should arrive at the failed registration page
-
-    When they click Continue
-    Then they should arrive at the Test RP
-    Then the Test RP page should have a sign-in error notice
-
   Scenario: IDP returns authn failure when user Signs in
     Given the user is at Test RP
     When they start a sign in journey
