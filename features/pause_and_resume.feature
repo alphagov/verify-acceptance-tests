@@ -16,7 +16,7 @@ Feature: Pause and Resume User Journey
     Then they will be at the resume page for "Stub Idp Demo Two"
 
     When they resume registering with IDP "Stub Idp Demo Two"
-    And they click on link "Register"
+    And they click button "Register"
     And they submit user details:
         | firstname       | Jane       |
         | surname         | Doe        |
@@ -26,6 +26,7 @@ Feature: Pause and Resume User Journey
         | addressPostCode | ABC 123    |
         | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click Continue
     Then they should be successfully verified
 
   Scenario: User pauses registration, bookmarks and revisits the paused page (after session timeout) and resumes from registration
@@ -42,7 +43,7 @@ Feature: Pause and Resume User Journey
     Then they will be at the resume page for "Stub Idp Demo Two"
 
     When they resume registering with IDP "Stub Idp Demo Two"
-    And they click on link "Register"
+    And they click button "Register"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
@@ -52,6 +53,7 @@ Feature: Pause and Resume User Journey
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click Continue
     Then they should be successfully verified
 
   Scenario: User pauses and resumes by starting new journey from RP and resumed registration succeeds
@@ -65,7 +67,7 @@ Feature: Pause and Resume User Journey
     Then they will be at the resume page for "Stub Idp Demo Two"
 
     When they resume registering with IDP "Stub Idp Demo Two"
-    And they click on link "Register"
+    And they click button "Register"
     And they submit user details:
       | firstname       | Jane       |
       | surname         | Doe        |
@@ -75,4 +77,5 @@ Feature: Pause and Resume User Journey
       | addressPostCode | ABC 123    |
       | dateOfBirth     | 1987-03-03 |
     When they give their consent
+    And they click Continue
     Then they should be successfully verified
