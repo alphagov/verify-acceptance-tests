@@ -98,7 +98,6 @@ end
 
 Given('they start a sign in journey') do
   click_on('Start')
-  choose('start_form_selection_false', allow_label_click: true)
   click_on('Continue')
 end
 

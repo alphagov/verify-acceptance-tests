@@ -26,9 +26,6 @@ Feature: User Back button
     When they go back to the start page
     Then they should arrive at the start page
 
-    When they choose a registration journey
-    Then they should arrive at the about documents page
-
     And they click Continue
     And they continue to register with IDP "Stub Idp Demo Two"
     And they want to cancel registration
