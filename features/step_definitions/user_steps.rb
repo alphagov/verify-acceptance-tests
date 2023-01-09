@@ -102,6 +102,34 @@ Given('they start a sign in journey') do
   click_on('Continue')
 end
 
+Given('this is their first time using Verify') do
+  choose('start_form_selection_true', allow_label_click: true)
+  click_on('Continue')
+  click_link('Continue')
+end
+
+Given('they choose a registration journey') do
+  choose('start_form_selection_true', allow_label_click: true)
+  click_on('Continue')
+  click_on('Continue')
+
+  choose('will_it_work_for_me_form_above_age_threshold_true', allow_label_click: true)
+  choose('will_it_work_for_me_form_resident_last_12_months_true', allow_label_click: true)
+  click_on('Continue')
+end
+
+Given('they choose an LOA1 registration journey') do
+  choose('start_form_selection_true', allow_label_click: true)
+  click_on('Continue')
+  click_link('Continue')
+end
+
+And('they are above the age threshold') do
+  choose('will_it_work_for_me_form_above_age_threshold_true', allow_label_click: true)
+  choose('will_it_work_for_me_form_resident_last_12_months_true', allow_label_click: true)
+  click_on('Continue')
+end
+
 Given(/^they login as "(.*)"( with a random pid)?$/) do |user_string, with_random_pid|
   user_string = @username if user_string == 'the newly registered user'
 
