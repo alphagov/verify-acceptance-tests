@@ -63,8 +63,9 @@ def log_in_as(username)
   assert_text("You've successfully authenticated")
 end
 
-Before do
-  visit(env('frontend') + '/cookies')
+Before do  
+  visit('https://www.staging.signin.service.gov.uk/cookies')
+  #visit(env('frontend') + '/cookies')
   Capybara.reset_sessions!
 end
 
