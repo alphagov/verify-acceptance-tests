@@ -1,5 +1,9 @@
 # Hub Acceptance Tests
 
+>**GOV.UK Verify has closed**
+>
+>This repository is out of date and has been archived
+
 This is an attempt at a new style of hub acceptance tests using Cucumber and Capybara.
 Hopefully, they'll be more maintainable than what we have now.
 
